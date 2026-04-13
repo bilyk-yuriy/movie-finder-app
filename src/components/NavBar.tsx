@@ -21,12 +21,12 @@ function NavBar() {
         <div className='navbar-wrapper'>
             <Container>
                 <nav className="navbar">
-                    <Link to='/'><h1>КіноЗона</h1></Link>
+                    <Link to='/'><h1 className='logo' >КіноЗона</h1></Link>
                     <form onSubmit={onSearch} className='search-form'>
                         <input className='search-input' ref={inputRef} type="text" placeholder="пошук фільму..." />
-                        <button className='search-button' type='submit'><CiSearch /></button>
+                        <button className='search-button' type='submit'><CiSearch fontSize={24}/></button>
                     </form>
-                    <Link to='/watch-list'><h1>Вотчліст</h1></Link>
+                    <Link className='nav-link' to='/watch-list'>Вотчліст</Link>
                 </nav>
             </Container>
         </div>
