@@ -6,7 +6,7 @@ import SearchPage from "./pages/SearchPage"
 
 
 function App() {
-
+  
   return <>
     <BrowserRouter>
       <NavBar></NavBar>

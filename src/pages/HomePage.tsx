@@ -1,6 +1,10 @@
+import MainMovie from "../components/MainMovie"
+
 function HomePage() {
 
-    return <></>
+    return <>
+        <MainMovie />
+    </>
 }
 
 export default HomePage
