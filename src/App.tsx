@@ -6,7 +6,7 @@ import SearchPage from "./pages/SearchPage"
 
 
 function App() {
-  
+
   return <>
     <BrowserRouter>
       <NavBar></NavBar>
@@ -16,6 +16,7 @@ function App() {
         <Route path='/search' element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
+
   </>
 }
 
