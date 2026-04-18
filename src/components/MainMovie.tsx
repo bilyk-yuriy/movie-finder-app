@@ -1,17 +1,20 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useQuery } from "@tanstack/react-query"
+import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
+import { FaBookmark } from 'react-icons/fa6';
+import { MdBookmarkAdd } from "react-icons/md";
 import { fetchRunTime, fetchTrendingMovies, fetchGenres } from "../api/tmdb"
 import Container from './Container'
-import './MainMovie.css'
+import styles from './MainMovie.module.css'
 
 function MainMovie() {
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['mainMovie'],
         queryFn: fetchTrendingMovies,
-        staleTime: 1000 * 60 * 60 
+        staleTime: 1000 * 60 * 60
     })
-    
+
 
     const { data: genresData } = useQuery({
         queryKey: ['genres'],
@@ -44,12 +47,12 @@ function MainMovie() {
 
     const movie = randomMovie !== null && data?.results[randomMovie]
 
-     const movieGenre = useMemo(()=> {
-        if(!movie) return []
+    const movieGenre = useMemo(() => {
+        if (!movie) return []
         return movie.genre_ids.map(el => {
-        const foundGenre = genresData?.genres.find(item => item.id === el)
-        return foundGenre ? foundGenre.name : null
-    }).filter(Boolean)
+            const foundGenre = genresData?.genres.find(item => item.id === el)
+            return foundGenre ? foundGenre.name : null
+        }).filter(Boolean)
     }, [movie, genresData])
 
     if (isLoading) return <div>Завантажується...</div>
@@ -61,27 +64,38 @@ function MainMovie() {
     const minutes = runtimeData ? runtimeData.runtime % 60 : null
     const textRunTime = hours ? `${hours}г ${minutes}хв` : minutes ? `${minutes}хв` : null
 
-    const descriprtion = movie.overview.length > 100 ? movie.overview.slice(0, 100) + '...' : movie.overview
+    const description = movie.overview.length > 100
+        ? movie.overview.substring(0, movie.overview.lastIndexOf(' ', 100)) + '...'
+        : movie.overview
 
-    return <>
-        <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="" />
+    return <section className={styles['mainmovie-wrapper']} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})` }}>
         <Container>
-            <div className='card-item'>
-                <img className='logo' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
-                <div className='card-info'>
-                    <div>{movie.title}</div>
-                    <div>{movie.release_date.slice(0, 4)}</div>
-                    {textRunTime && <div>{textRunTime}</div>}
-                    {movieGenre.length > 0 && <div>• {movieGenre.join(', ')} •</div>}
-                    {movie.vote_average > 0 && <div>{`✩ ${movie.vote_average.toFixed(1)}`}</div>}
-                    <div>{descriprtion}</div>
-
+            <div className={styles['mainmovie-content']}>
+                <div className={styles['poster-container']}>
+                    <Link to={`/movie/${movie.id}`}>
+                        <img className={styles['poster']} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
+                    </Link>
+                    <button className={styles['bookmark-btn']}>
+                        <FaBookmark title='add to watchlist' />
+                    </button>
+                </div>
+                <div className={styles['details-container']}>
+                    <h2>{movie.title}</h2>
+                    <p>
+                        <span>{movie.release_date.slice(0, 4)}</span>
+                        {textRunTime && <span> • {textRunTime} • </span>}
+                        {movieGenre.length > 0 && <span>{movieGenre.join(', ')}</span>}
+                    </p>
+                    <p className={styles['movie-description']}>
+                        {movie.vote_average > 0 && <span>{`✩ ${movie.vote_average.toFixed(1)}`}</span>}
+                        <span> • {description + '\u00A0'}</span>
+                        <Link to={`/movie/${movie.id}`}><span className={styles['more-link']} title='look more'>(more)</span></Link>
+                    </p>
+                    <button className={styles['add-watchlist-btn']}><MdBookmarkAdd /> Add to Watchlist</button>
                 </div>
             </div>
         </Container>
-    </>
-
-
+    </section>
 }
 
 export default MainMovie
