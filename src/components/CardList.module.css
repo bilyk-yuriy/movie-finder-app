@@ -1,0 +1,59 @@
+.wrapper {
+    position: relative;
+}
+
+.cardList {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    gap: 20px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.cartList::-webkit-scrollbar {
+    display: none;
+}
+
+
+.leftBtn,
+.rightBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    top: 115px;
+    border-radius: 50px;
+    border: 1px solid rgb(217, 217, 217);
+    opacity: 0.5;
+    transition: all 0.3s;
+    z-index: 100;
+
+}
+
+.leftBtn {
+    left: -35px;
+    padding-right: 10px;
+}
+
+.rightBtn {
+    right: -35px;
+    padding-left: 10px;
+}
+
+.leftBtn:hover,
+.rightBtn:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.leftBtn:hover {
+    left: -40px;
+}
+
+.rightBtn:hover {
+    right: -40px;
+}

@@ -18,17 +18,17 @@ function NavBar() {
     }
 
     return <>
-        <div className={styles['navbar-wrapper']}>
+        <div className={styles.navbarWrapper}>
             <Container>
-                <nav className={styles["navbar"]}>
-                    <Link to='/'><h1 className={styles['logo']} >MovieZone</h1></Link>
-                    <form onSubmit={onSearch} className={styles['search-form']}>
-                        <input className={styles['search-input']} ref={inputRef} type="text" placeholder="search movies..." />
-                        <button className={styles['search-button']} type='submit'><CiSearch fontSize={24} /></button>
+                <nav className={styles.navbar}>
+                    <Link to='/'><h1 className={styles.logo} >MovieZone</h1></Link>
+                    <form onSubmit={onSearch} className={styles.searchForm}>
+                        <input className={styles.searchInput} ref={inputRef} type="text" placeholder="search movies..." />
+                        <button className={styles.searchBtn} type='submit'><CiSearch fontSize={24} /></button>
                     </form>
-                    <div className={styles['nav-actions']}>
-                        <Link className={styles['nav-link']} to='/watch-list'>WatchList</Link>
-                        <button className={styles['login-btn']}>Login</button>
+                    <div className={styles.navActions}>
+                        <Link className={styles.navLink} to='/watch-list'>WatchList</Link>
+                        <button className={styles.loginBtn}>Login</button>
                     </div>
                 </nav>
             </Container>

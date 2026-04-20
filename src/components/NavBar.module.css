@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-.navbar-wrapper {
+.navbarWrapper {
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -17,18 +17,23 @@
     align-items: center;
 }
 
+.navbar > a {
+    justify-self: start;
+}
+
 .logo {
+    justify-self: start;
     margin: 0;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
     color: white;
 }
 
-.search-form {
+.searchForm {
     position: relative;
 }
 
-.search-input {
+.searchInput {
     height: 30px;
     width: 200px;
     padding-left: 10px;
@@ -37,7 +42,7 @@
     border-radius: 50px;
 }
 
-.search-button {
+.searchBtn {
     position: absolute;
     background: none;
     border: none;
@@ -47,11 +52,11 @@
     right: 10px;
 }
 
-.nav-actions {
+.navActions {
     justify-self: end;
 }
 
-.nav-link, .login-btn {
+.navLink, .loginBtn {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     color: white;
@@ -61,13 +66,14 @@
     margin-left: 15px;
 }
 
-.nav-link:hover, .login-btn:hover {
-    opacity: 0.9;
-}
-
-.login-btn {
+.loginBtn {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
 }
+
+.navLink:hover, .loginBtn:hover {
+    opacity: 0.9;
+}
+

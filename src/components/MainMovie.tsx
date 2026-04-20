@@ -59,7 +59,6 @@ function MainMovie() {
     if (isError) return <div>Щось пішло не так...</div>
     if (!movie) return null
 
-
     const hours = runtimeData ? Math.floor(runtimeData.runtime / 60) : null
     const minutes = runtimeData ? runtimeData.runtime % 60 : null
     const textRunTime = hours ? `${hours}г ${minutes}хв` : minutes ? `${minutes}хв` : null
@@ -68,30 +67,34 @@ function MainMovie() {
         ? movie.overview.substring(0, movie.overview.lastIndexOf(' ', 100)) + '...'
         : movie.overview
 
-    return <section className={styles['mainmovie-wrapper']} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})` }}>
+    const BASE_URL = 'https://image.tmdb.org/t/p/'
+    const release = movie.release_date.slice(0, 4)
+    const rating = movie.vote_average.toFixed(1)
+
+    return <section className={styles.mainmovieWrapper} style={{ backgroundImage: `url(${BASE_URL}w1280${movie.backdrop_path})` }}>
         <Container>
-            <div className={styles['mainmovie-content']}>
-                <div className={styles['poster-container']}>
+            <div className={styles.mainmovieContent}>
+                <div className={styles.posterContainer}>
                     <Link to={`/movie/${movie.id}`}>
-                        <img className={styles['poster']} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
+                        <img className={styles.poster} src={`${BASE_URL}w500${movie.poster_path}`} alt="" />
                     </Link>
-                    <button className={styles['bookmark-btn']}>
+                    <button className={styles.bookmarkBtn}>
                         <FaBookmark title='add to watchlist' />
                     </button>
                 </div>
-                <div className={styles['details-container']}>
+                <div className={styles.detailsContainer}>
                     <h2>{movie.title}</h2>
                     <p>
-                        <span>{movie.release_date.slice(0, 4)}</span>
+                        <span>{release}</span>
                         {textRunTime && <span> • {textRunTime} • </span>}
                         {movieGenre.length > 0 && <span>{movieGenre.join(', ')}</span>}
                     </p>
-                    <p className={styles['movie-description']}>
-                        {movie.vote_average > 0 && <span>{`✩ ${movie.vote_average.toFixed(1)}`}</span>}
+                    <p className={styles.movieDescription}>
+                        {movie.vote_average > 0 && <span>{`✩ ${rating}`}</span>}
                         <span> • {description + '\u00A0'}</span>
-                        <Link to={`/movie/${movie.id}`}><span className={styles['more-link']} title='look more'>(more)</span></Link>
+                        <Link to={`/movie/${movie.id}`}><span className={styles.moreLink} title='look more'>(more)</span></Link>
                     </p>
-                    <button className={styles['add-watchlist-btn']}><MdBookmarkAdd /> Add to Watchlist</button>
+                    <button className={styles.addWatchlistBtn}><MdBookmarkAdd /> Add to Watchlist</button>
                 </div>
             </div>
         </Container>

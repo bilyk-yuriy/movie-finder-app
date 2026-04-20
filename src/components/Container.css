@@ -1,6 +1,11 @@
-.container {
+.container, .container--wide {
     max-width: 900px;
     padding: 0 15px;
     width: 100% ;
     margin: auto;
+}
+
+.container--wide {
+    max-width: 1080px;
+    margin-bottom: 50px;
 }

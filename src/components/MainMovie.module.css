@@ -14,7 +14,7 @@ a {
     text-decoration: none;
 }
 
-.mainmovie-wrapper {
+.mainmovieWrapper {
     height: 450px;
     padding: 60px 0;
     background-size: cover;
@@ -23,13 +23,13 @@ a {
     background-blend-mode: darken;
 }
 
-.mainmovie-content {
+.mainmovieContent {
     display: flex;
     align-items: center;
     gap: 100px;
 }
 
-.poster-container {
+.posterContainer {
     position: relative;
 }
 
@@ -39,7 +39,7 @@ a {
     height: 400px;
 }
 
-.bookmark-btn {
+.bookmarkBtn {
     position: absolute;
     top: 0;
     left: 20px;
@@ -53,20 +53,20 @@ a {
     cursor: pointer;
 }
 
-.poster-container:hover .bookmark-btn {
+.posterContainer:hover .bookmarkBtn {
     opacity: 1;
     animation: slideDown 0.4s;
 }
 
-.bookmark-btn:hover {
+.bookmarkBtn:hover {
     color: yellow;
 }
 
-.details-container {
+.detailsContainer {
     width: 400px;
 }
 
-.details-container h2 {
+.detailsContainer h2 {
     color: white;
     margin: 5px 0 20px;
     padding-bottom: 10px;
@@ -74,24 +74,24 @@ a {
     border-bottom: 1px solid white;
 }
 
-.details-container span {
+.detailsContainer span {
     color: white;
     font-weight: 300;
     font-family: 'Inter', sans-serif;
     font-size: 22px;
 }
 
-.movie-description {
+.movieDescription {
     margin: 5px 0 20px;
 }
 
-.movie-description .more-link {
+.movieDescription .moreLink {
     margin-left: -5px;
     font-size: 14px;
     white-space: nowrap;
 }
 
-.add-watchlist-btn {
+.addWatchlistBtn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,7 +109,7 @@ a {
     cursor: pointer;
 }
 
-.add-watchlist-btn:hover {
+.addWatchlistBtn:hover {
     background-color: rgb(142, 142, 142);
     transform: scale(1.05);
 }
