@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import type { Movie } from "../types"
-import styles from './CartItem.module.css'
+import styles from './CardItem.module.css'
 
-type CartItemProp = {
+type CardItemProp = {
     item: Movie
 }
 
-function CartItem({ item }: CartItemProp) {
+function CartItem({ item }: CardItemProp) {
 
     const year = item.release_date.slice(0, 4)
     const rating = item.vote_average.toFixed(1)

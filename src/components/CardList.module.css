@@ -5,14 +5,14 @@
 .cardList {
     display: flex;
     overflow-x: auto;
-    overflow-y: visible;
+    overflow-y: hidden;
     gap: 20px;
 
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
-.cartList::-webkit-scrollbar {
+.cardList::-webkit-scrollbar {
     display: none;
 }
 

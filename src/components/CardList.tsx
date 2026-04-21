@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import type { Movie } from "../types"
-import CartItem from "./CartItem"
+import CardItem from "./CardItem"
 import styles from './CardList.module.css'
 
 type CardListProp = {
@@ -37,7 +37,7 @@ function CardList({ movies }: CardListProp) {
             <button className={styles.rightBtn} onClick={() => handleClick('right')}><IoIosArrowForward size={40}/></button>
             <div className={styles.cardList} ref={listRef}>
                 {movies.map(el =>
-                    <CartItem key={el.id} item={el} />
+                    <CardItem key={el.id} item={el} />
                 )}
             </div>
         </div>

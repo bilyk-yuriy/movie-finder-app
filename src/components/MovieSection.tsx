@@ -1,26 +1,32 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchTrendingMovies } from "../api/tmdb"
+import type { Movies } from '../types'
 import Container from './Container'
 import CardList from './CardList'
-import './TrendingMovies.css'
+import './MovieSection.css'
 
 
-function TrendingMovies() {
+type MovieSectionProp = {
+    queryKey: string,
+    queryFn: () => Promise<Movies>,
+    title: string,
+}
+
+function MovieSection({queryKey, queryFn, title}: MovieSectionProp) {
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['mainMovie'],
-        queryFn: fetchTrendingMovies
+        queryKey: [queryKey],
+        queryFn: queryFn
     })
 
     if (isLoading) return <div>Завантажується...</div>
     if (isError) return <div>Щось пішло не так...</div>
 
-    return <section className='trendingmovie-wrapper'>
+    return <section className='moviesection-wrapper'>
         <Container wide>
-            <h2>Тренди тиждня</h2>
+            <h2>{title}</h2>
             <CardList movies={data?.results ?? []} />
         </Container>
     </section>
 }
 
-export default TrendingMovies
+export default MovieSection

@@ -10,7 +10,7 @@ import styles from './MainMovie.module.css'
 function MainMovie() {
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['mainMovie'],
+        queryKey: ['trendingMovie'],
         queryFn: fetchTrendingMovies,
         staleTime: 1000 * 60 * 60
     })
