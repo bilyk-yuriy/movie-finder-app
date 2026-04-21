@@ -12,14 +12,14 @@ function App() {
   return <>
     <BrowserRouter>
       <NavBar></NavBar>
-      <main style={{marginTop: '70px'}}>
+      {/* <main style={{marginTop: '70px'}}> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/watch-list' element={<WatchListPage />} />
         <Route path='/search' element={<SearchPage />} />
         <Route path='/movie/:id' element={<MoviePage />}/>
       </Routes>
-      </main>
+      {/* </main> */}
       <Footer></Footer>
     </BrowserRouter>
 
