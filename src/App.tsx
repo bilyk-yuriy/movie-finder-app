@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage"
 import WatchListPage from "./pages/WatchListPage"
 import SearchPage from "./pages/SearchPage"
 import MoviePage from "./pages/MoviePage"
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/movie/:id' element={<MoviePage />}/>
       </Routes>
       </main>
+      <Footer></Footer>
     </BrowserRouter>
 
   </>

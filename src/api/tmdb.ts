@@ -1,6 +1,6 @@
 import type { Movies, Genres, RunTime } from '../types'
 
-async function makeBodyFn<T>(url: string) {
+async function makeBodyFn<T>(url: string): Promise<T> {
     const response = await fetch(url, {headers: {'Authorization': `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`}})
     if(!response.ok) {
         throw new Error('Помилка запиту')
