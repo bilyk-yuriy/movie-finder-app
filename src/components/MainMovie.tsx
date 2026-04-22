@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { FaBookmark } from 'react-icons/fa6';
-import { MdBookmarkAdd } from "react-icons/md";
 import { fetchRunTime, fetchTrendingMovies, fetchGenres } from "../api/tmdb"
 import Container from './Container'
+import WatchlistBtn from './WatchListBtn';
+import { WatchListContext } from '../contexts/WatchLIstContext';
 import styles from './MainMovie.module.css'
 
 function MainMovie() {
@@ -14,7 +15,6 @@ function MainMovie() {
         queryFn: fetchTrendingMovies,
         staleTime: 1000 * 60 * 60
     })
-
 
     const { data: genresData } = useQuery({
         queryKey: ['genres'],
@@ -38,6 +38,10 @@ function MainMovie() {
         staleTime: Infinity
     })
 
+    const watchlist = useContext(WatchListContext)
+    if (!watchlist) return null
+    const { addToWatchList } = watchlist
+
     useEffect(() => {
         if (randomMovie !== null) return
         if (!data) return
@@ -56,8 +60,7 @@ function MainMovie() {
     }, [movie, genresData])
 
     if (isLoading) return <div>Завантажується...</div>
-    if (isError) return <div>Щось пішло не так...</div>
-    if (!movie) return null
+    if (isError || !movie) return <div>Щось пішло не так...</div>
 
     const hours = runtimeData ? Math.floor(runtimeData.runtime / 60) : null
     const minutes = runtimeData ? runtimeData.runtime % 60 : null
@@ -78,7 +81,7 @@ function MainMovie() {
                     <Link to={`/movie/${movie.id}`}>
                         <img className={styles.poster} src={`${BASE_URL}w500${movie.poster_path}`} alt="" />
                     </Link>
-                    <button className={styles.bookmarkBtn}>
+                    <button onClick={()=> addToWatchList(movie)} className={styles.bookmarkBtn}>
                         <FaBookmark title='add to watchlist' />
                     </button>
                 </div>
@@ -94,7 +97,7 @@ function MainMovie() {
                         <span> • {description + '\u00A0'}</span>
                         <Link to={`/movie/${movie.id}`}><span className={styles.moreLink} title='look more'>(more)</span></Link>
                     </p>
-                    <button className={styles.addWatchlistBtn}><MdBookmarkAdd /> Add to Watchlist</button>
+                    <WatchlistBtn movie={movie}/>
                 </div>
             </div>
         </Container>

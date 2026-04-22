@@ -1,4 +1,4 @@
-import './Container.css'
+import styles from './Container.module.css'
 
 type ContainerProp = {
     children: React.ReactNode
@@ -7,7 +7,7 @@ type ContainerProp = {
 
 function Container({ children, wide }: ContainerProp) {
 
-    return <div className={`container${wide ? '--wide' : ''}`}>
+    return <div className={styles[`container${wide ? '--wide' : ''}`]}>
         {children}
     </div>
 }

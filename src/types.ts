@@ -21,14 +21,39 @@ export type Movie = {
 }
 
 export type Genres = {
-    genres: Genre[]
+    genres: GenreId[]
 }
 
-export type Genre = {
+export type GenreId = {
     id: number,
     name: string
 }
 
 export type RunTime = {
     runtime: number
+}
+
+export type MovieDetails = Movie & {
+    genres:  Genre[],
+    runtime: number,
+    recommendations: {results: Movie[]},
+    credits: {cast: Actor[]},
+    videos: { results: Video[]},
+}
+
+export type Genre = {
+    name: string
+}
+
+type Actor = {
+    name: string,
+    character: string,
+    profile_path: string | null
+
+}
+
+type Video = {
+    key: string,
+    type: string,
+    official: boolean
 }

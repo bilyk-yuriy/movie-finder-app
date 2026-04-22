@@ -1,4 +1,4 @@
-import type { Movies, Genres, RunTime } from '../types'
+import type { Movies, Genres, RunTime, MovieDetails } from '../types'
 
 async function makeBodyFn<T>(url: string): Promise<T> {
     const response = await fetch(url, {headers: {'Authorization': `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`}})
@@ -38,4 +38,8 @@ export async function fetchGenres(): Promise<Genres> {
 
 export async function fetchRunTime(movieId: number): Promise<RunTime> {
    return makeBodyFn(`${BASE_URl}/movie/${movieId}`)
+}
+
+export async function fetchMovie(id: number): Promise<MovieDetails> {
+    return makeBodyFn(`${BASE_URl}/movie/${id}?append_to_response=recommendations,credits,videos`)
 }

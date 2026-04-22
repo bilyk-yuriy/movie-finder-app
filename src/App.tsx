@@ -5,22 +5,23 @@ import WatchListPage from "./pages/WatchListPage"
 import SearchPage from "./pages/SearchPage"
 import MoviePage from "./pages/MoviePage"
 import Footer from "./components/Footer"
+import { WatchListProvider } from "./contexts/WatchLIstContext"
 
 
 function App() {
 
   return <>
     <BrowserRouter>
+    <WatchListProvider>
       <NavBar></NavBar>
-      {/* <main style={{marginTop: '70px'}}> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/watch-list' element={<WatchListPage />} />
         <Route path='/search' element={<SearchPage />} />
         <Route path='/movie/:id' element={<MoviePage />}/>
       </Routes>
-      {/* </main> */}
       <Footer></Footer>
+      </WatchListProvider>
     </BrowserRouter>
 
   </>

@@ -1,0 +1,17 @@
+.wrapper {
+    height: 200px;
+}
+
+.poster {
+    height: 200px;
+}
+
+.emptyPoster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: calc(200px / 1.5);
+    background-color: black;
+    color: white;
+}
