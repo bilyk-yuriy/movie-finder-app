@@ -6,25 +6,27 @@ import SearchPage from "./pages/SearchPage"
 import MoviePage from "./pages/MoviePage"
 import Footer from "./components/Footer"
 import { WatchListProvider } from "./contexts/WatchLIstContext"
+import './App.css'
 
 
 function App() {
 
-  return <>
-    <BrowserRouter>
+  return <BrowserRouter>
     <WatchListProvider>
-      <NavBar></NavBar>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/watch-list' element={<WatchListPage />} />
-        <Route path='/search' element={<SearchPage />} />
-        <Route path='/movie/:id' element={<MoviePage />}/>
-      </Routes>
-      <Footer></Footer>
-      </WatchListProvider>
-    </BrowserRouter>
-
-  </>
+      <div className='layout'>
+        <NavBar></NavBar>
+        <main>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/watch-list' element={<WatchListPage />} />
+            <Route path='/search' element={<SearchPage />} />
+            <Route path='/movie/:id' element={<MoviePage />} />
+          </Routes>
+        </main>
+        <Footer></Footer>
+      </div>
+    </WatchListProvider>
+  </BrowserRouter>
 }
 
 export default App
