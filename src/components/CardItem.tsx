@@ -15,7 +15,7 @@ function CartItem({ item }: CardItemProp) {
         <div className={styles.card}>
             <img className={styles.poster} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt="" />
             <div className={styles.cardInfo}>
-                <h4>{item.title}</h4>
+                <h4 className={styles.title} >{item.title}</h4>
                 <div className={styles.description}>
                     <span>{year}</span>
                     {item.vote_average > 0 && <span> • ✩ {rating}</span>}

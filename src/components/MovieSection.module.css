@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-h2 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 30px;
-    color: white;
-    margin-left: 20px;
-}
 
-.moviesection-wrapper {
+.moviesectionWrapper {
     background-color: #0f1219;
     width: 100%;
     height: 500px;
     display: flex;
     align-items: center;
+}
+
+.title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    color: white;
+    margin-left: 20px;
 }

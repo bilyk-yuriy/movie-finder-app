@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
-h4 {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    margin: 0;
-    color: white;
-    transition: all 0.3s;
-}
 
 .card {
     width: 200px;
@@ -17,7 +9,14 @@ h4 {
 
 .poster {
     height: 300px;
-    color: white;
+    transition: all 0.3s;
+}
+
+.title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    margin: 0;
     transition: all 0.3s;
 }
 
