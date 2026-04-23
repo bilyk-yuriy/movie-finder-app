@@ -1,8 +1,8 @@
-export type Movies = {
-    results: Movie[]
+export type MoviePreviewList = {
+    results: MoviePreview[]
 }
 
-export type Movie = {
+export type MoviePreview = {
     adult: boolean,
     backdrop_path: string,
     id: number,
@@ -20,25 +20,15 @@ export type Movie = {
     vote_count: number
 }
 
-export type Genres = {
-    genres: GenreId[]
-}
-
-export type GenreId = {
-    id: number,
-    name: string
-}
-
-export type RunTime = {
-    runtime: number
+export type Movie = MoviePreview & {
+    genres: Genre[],
+    runtime: number,
 }
 
 export type MovieDetails = Movie & {
-    genres:  Genre[],
-    runtime: number,
-    recommendations: {results: Movie[]},
-    credits: {cast: Actor[]},
-    videos: { results: Video[]},
+    recommendations: { results: Movie[] },
+    credits: { cast: Actor[] },
+    videos: { results: Video[] },
 }
 
 export type Genre = {

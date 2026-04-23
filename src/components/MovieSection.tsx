@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import type { Movies } from '../types'
+import type { MoviePreviewList } from '../types'
 import Container from './Container'
 import CardList from './CardList'
 import './MovieSection.css'
@@ -7,7 +7,7 @@ import './MovieSection.css'
 
 type MovieSectionProp = {
     queryKey: string,
-    queryFn: () => Promise<Movies>,
+    queryFn: () => Promise<MoviePreviewList>,
     title: string,
 }
 

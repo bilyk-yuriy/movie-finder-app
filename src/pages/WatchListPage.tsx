@@ -11,6 +11,8 @@ function WatchListPage() {
         {watchlist.map(el =>
             <div key={el.id}>
                 <div>{el.title}</div>
+                <div>{el.release_date}</div>
+                {/* <div>{el.}</div> */}
             </div>
         )}
     </>

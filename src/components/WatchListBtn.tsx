@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { MdBookmarkAdd } from "react-icons/md";
+import { MdBookmarkAdded } from "react-icons/md";
 import { WatchListContext } from "../contexts/WatchLIstContext";
 import styles from './WatchListBtn.module.css'
 import type { Movie } from "../types";
@@ -12,10 +13,14 @@ function WatchlistBtn({movie}: WatchListProp) {
 
     const watchlistContext = useContext(WatchListContext)
     if (!watchlistContext) return null
-    const { addToWatchList } = watchlistContext
+    const { watchlist, toggleWatchList } = watchlistContext
+
+    const found = watchlist.find(el => el.id === movie.id)
 
     return <>
-        <button onClick={()=> addToWatchList(movie)} className={styles.addWatchlistBtn}><MdBookmarkAdd /> Add to Watchlist</button>
+        {found
+        ? <button onClick={()=> toggleWatchList(movie)} className={styles.removeWatchlistBtn}><MdBookmarkAdded />Added</button>
+        : <button onClick={()=> toggleWatchList(movie)} className={styles.addWatchlistBtn}><MdBookmarkAdd />Add to Watchlist</button>}
     </>
 }
 

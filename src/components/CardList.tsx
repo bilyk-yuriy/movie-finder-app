@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-import type { Movie } from "../types"
+import type { MoviePreview } from "../types"
 import CardItem from "./CardItem"
 import styles from './CardList.module.css'
 
 type CardListProp = {
-    movies: Movie[]
+    movies: MoviePreview[]
 }
 
 function CardList({ movies }: CardListProp) {

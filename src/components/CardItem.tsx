@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import type { Movie } from "../types"
+import type { MoviePreview } from "../types"
 import styles from './CardItem.module.css'
 
 type CardItemProp = {
-    item: Movie
+    item: MoviePreview
 }
 
 function CartItem({ item }: CardItemProp) {
