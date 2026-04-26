@@ -3,7 +3,7 @@ import { MdBookmarkAdd } from "react-icons/md";
 import { MdBookmarkAdded } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import type { MovieWithGenres } from "../types";
-import { WatchListContext } from "../contexts/WatchLIstContext";
+import { WatchListContext } from '../contexts/WatchListContext';
 import styles from './WatchListBtn.module.css'
 
 type WatchListProp = {

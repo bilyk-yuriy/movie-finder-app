@@ -6,7 +6,7 @@ import { BsBookmarkHeartFill } from "react-icons/bs";
 import { fetchTrendingMovies, fetchFullMovie } from "../api/tmdb"
 import Container from './Container'
 import WatchlistBtn from './WatchListBtn';
-import { WatchListContext } from '../contexts/WatchLIstContext';
+import { WatchListContext } from '../contexts/WatchListContext';
 import styles from './MainMovie.module.css'
 import type { MovieWithGenres } from '../types';
 

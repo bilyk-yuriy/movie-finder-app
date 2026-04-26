@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import Container from '../components/Container'
-import { WatchListContext } from "../contexts/WatchLIstContext"
+import { WatchListContext } from "../contexts/WatchListContext"
 import MovieList from '../components/MovieList'
 import styles from './WatchListPage.module.css'
 

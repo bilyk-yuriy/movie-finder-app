@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import type { MoviePreviewList } from '../types'
 import Container from './Container'
-import CardList from './CardList'
+import SectionList from './SectionList'
 import styles from './MovieSection.module.css'
 
 
@@ -24,7 +24,7 @@ function MovieSection({queryKey, queryFn, title}: MovieSectionProp) {
     return <section className={styles.moviesectionWrapper}>
         <Container wide>
             <h2 className={styles.title} >{title}</h2>
-            <CardList movies={data?.results ?? []} />
+            <SectionList movies={data?.results ?? []} />
         </Container>
     </section>
 }

@@ -5,7 +5,7 @@ import WatchListPage from "./pages/WatchListPage"
 import SearchPage from "./pages/SearchPage"
 import MoviePage from "./pages/MoviePage"
 import Footer from "./components/Footer"
-import { WatchListProvider } from "./contexts/WatchLIstContext"
+import { WatchListProvider } from "./contexts/WatchListContext"
 import './App.css'
 
 
