@@ -1,5 +1,6 @@
-.addWatchlistBtn,
-.removeWatchlistBtn{
+.addBtn,
+.addedBtn,
+.removeBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,16 +19,25 @@
     transition: all 0.3s;
 }
 
-.addWatchlistBtn:hover,
-.removeWatchlistBtn:hover {
+.addBtn:hover,
+.addedBtn:hover,
+.removeBtn:hover {
     background-color: rgb(142, 142, 142);
     transform: scale(1.05);
 }
 
-.removeWatchlistBtn {
+.addedBtn {
     background-color: rgb(201, 157, 62);
 }
 
-.removeWatchlistBtn:hover {
+.addedBtn:hover {
     background-color: rgb(173, 132, 44);
+}
+
+.removeBtn {
+    background-color: rgb(154, 26, 6);
+}
+
+.removeBtn:hover {
+    background-color: rgb(111, 18, 4);
 }

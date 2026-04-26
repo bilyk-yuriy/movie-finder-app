@@ -1,0 +1,12 @@
+.searchpageWrapper {
+    background-color: #0f1219;
+    color: white;
+    min-height: 100vh;
+    padding: 50px 0;
+}
+
+.title {
+    margin: 0;
+    padding-bottom: 40px;
+    border-bottom: 1px solid white;
+}

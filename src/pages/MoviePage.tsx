@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { fetchMovie } from "../api/tmdb"
+import type { MovieWithGenres } from "../types"
 import WatchlistBtn from '../components/WatchListBtn'
 import styles from './MoviePage.module.css'
+
 
 function MoviePage() {
 
@@ -28,6 +30,8 @@ function MoviePage() {
     const actors = data.credits.cast.slice(0, 20)
     const recommendations = data.recommendations.results.filter(el => el.vote_count > 2000).slice(0, 20)
 
+    const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
+
     return <>
         <img className={styles.wrapper} src={`${BASE_URL}w1280${data.backdrop_path}`} alt="" />
         <img className={styles.poster} src={`${BASE_URL}w1280${data.poster_path}`} alt="" />
@@ -35,7 +39,7 @@ function MoviePage() {
         <div>{release}</div>
         <div> • {genres} • </div>
         <div>{runtime}</div>
-        <WatchlistBtn movie={data}/>
+        <WatchlistBtn movie={movie}/>
         <div>{data.overview}</div>
 
         <iframe src={`https://www.youtube.com/embed/${trailer}`} />

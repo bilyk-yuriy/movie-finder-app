@@ -1,0 +1,25 @@
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.poster {
+    height: 200px;
+}
+
+.emptyPoster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 198px;
+    width: calc(200px / 1.5 - 2px);
+    border: 1px solid white;
+    border-radius: 2px;
+}

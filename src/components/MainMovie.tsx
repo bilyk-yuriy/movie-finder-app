@@ -8,6 +8,7 @@ import Container from './Container'
 import WatchlistBtn from './WatchListBtn';
 import { WatchListContext } from '../contexts/WatchLIstContext';
 import styles from './MainMovie.module.css'
+import type { MovieWithGenres } from '../types';
 
 function MainMovie() {
 
@@ -23,7 +24,7 @@ function MainMovie() {
         ? trendingMovie.results[randomMovie].id
         : undefined
 
-    const { data, isLoading, isError} = useQuery({
+    const { data, isLoading, isError } = useQuery({
         queryKey: ['mainMovie'],
         queryFn: () => {
             if (selectedMovieId === undefined) throw new Error('No movie id')
@@ -45,20 +46,19 @@ function MainMovie() {
     if (isTrendingLoading || isLoading) return <div>Завантажується...</div>
     if (isTrendingError || isError || !data) return <div>Щось пішло не так...</div>
 
-    const description = data.overview.length > 100
-        ? data.overview.substring(0, data.overview.lastIndexOf(' ', 100)) + '...'
-        : data.overview
-
     const BASE_URL = 'https://image.tmdb.org/t/p/'
     const found = watchlist.find(el => el.id === data.id)
     const release = data.release_date.slice(0, 4)
-
     const hours = Math.floor(data.runtime / 60)
     const minutes = data.runtime % 60
     const textRunTime = `${hours}г ${minutes}хв`
     const genre = data.genres.map(el => el.name).join(', ')
-
     const rating = data.vote_average.toFixed(1)
+    const description = data.overview.length > 100
+        ? data.overview.substring(0, data.overview.lastIndexOf(' ', 100)) + '...'
+        : data.overview
+
+    const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
 
     return <section className={styles.mainmovieWrapper} style={{ backgroundImage: `url(${BASE_URL}w1280${data.backdrop_path})` }}>
         <Container>
@@ -67,7 +67,7 @@ function MainMovie() {
                     <Link to={`/movie/${data.id}`}>
                         <img className={styles.poster} src={`${BASE_URL}w500${data.poster_path}`} alt="" />
                     </Link>
-                    <button onClick={() => toggleWatchList(data)} className={styles.bookmarkBtn}>
+                    <button onClick={() => toggleWatchList(movie)} className={styles.bookmarkBtn}>
                         {found ? <BsBookmarkHeartFill title='add to watchlist' /> : <FaBookmark title='add to watchlist' />}
                     </button>
                 </div>
@@ -83,7 +83,7 @@ function MainMovie() {
                         <span> • {description + '\u00A0'}</span>
                         <Link to={`/movie/${data.id}`}><span className={styles.moreLink} title='look more'>(more)</span></Link>
                     </p>
-                    <WatchlistBtn movie={data} />
+                    <WatchlistBtn movie={movie} />
                 </div>
             </div>
         </Container>

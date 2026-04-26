@@ -31,7 +31,12 @@ export type MovieDetails = Movie & {
     videos: { results: Video[] },
 }
 
+export type Genres = {
+    genres: Genre[]
+}
+
 export type Genre = {
+    id: number
     name: string
 }
 
@@ -47,3 +52,5 @@ type Video = {
     type: string,
     official: boolean
 }
+
+export type MovieWithGenres = Omit<MoviePreview, 'genres' > & { genres: string[] }
