@@ -9,9 +9,10 @@ import styles from './WatchListBtn.module.css'
 type WatchListProp = {
     movie: MovieWithGenres
     variant?: 'default' | 'remove'
+    showToast?: (movie: MovieWithGenres)=> void
 }
 
-function WatchlistBtn({movie, variant}: WatchListProp) {
+function WatchlistBtn({movie, variant, showToast}: WatchListProp) {
 
     const watchlistContext = useContext(WatchListContext)
     if (!watchlistContext) return null
@@ -20,7 +21,7 @@ function WatchlistBtn({movie, variant}: WatchListProp) {
     const found = watchlist.find(el => el.id === movie.id)
 
     if (variant === 'remove') {
-        return <button onClick={()=> toggleWatchList(movie)} className={styles.removeBtn}>
+        return <button onClick={()=> {toggleWatchList(movie); showToast?.(movie)}} className={styles.removeBtn}>
             <FaTrashAlt /> Remove
         </button>
     } 

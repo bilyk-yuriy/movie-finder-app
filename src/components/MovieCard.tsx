@@ -6,9 +6,10 @@ import styles from './MovieCard.module.css'
 type MovieCardProp = {
     item: MovieWithGenres
     variant?: 'default' | 'remove'
+    showToast?: (movie: MovieWithGenres)=> void
 }
 
-function MovieCard({ item, variant }: MovieCardProp) {
+function MovieCard({ item, variant, showToast }: MovieCardProp) {
 
     const BASE_URL = 'https://image.tmdb.org/t/p/'
 
@@ -27,7 +28,7 @@ function MovieCard({ item, variant }: MovieCardProp) {
                 {item.genres.length !== 0 && <div> • {genres} • </div>}
                 {item.vote_average !== 0 && <div> ✩ {rating}</div>}
                 <div>{description}</div>
-                <WatchlistBtn movie={item} variant={variant}></WatchlistBtn>
+                <WatchlistBtn movie={item} variant={variant} showToast={showToast}></WatchlistBtn>
             </div>
         </div>
     
