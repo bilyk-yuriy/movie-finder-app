@@ -1,0 +1,70 @@
+button,
+select {
+    cursor: pointer;
+}
+
+.genresContainer {
+    padding: 40px 0 0 30px;
+    border-right: 1px solid rgb(127, 127, 127);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.genresContainer select {
+    margin-top: 10px;
+    height: 30px;
+    width: 130px;
+    background-color: rgb(93, 93, 93);
+    color: white;
+    border-radius: 5px;
+}
+
+.filterHeader {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.arrowBtn {
+    height: 26px;
+    width: 26px;
+    background-color: #0f1219;
+    border: none;
+}
+
+.arrow {
+    position: relative;
+    top: -12px;
+    left: -2px;
+    font-size: 30px;
+    color: white;
+}
+
+.title {
+    background-color: #0f1219;
+    color: white;
+    border: none;
+    font-size: 20px;
+    margin: 0;
+}
+
+.inputYearsContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.inputYearsContainer input {
+    height: 30px;
+    width: 70px;
+    background-color: rgb(93, 93, 93);
+    border: none;
+    border-radius: 5px;
+}
+
+.inputYearsContainer input::placeholder {
+    color: white;
+    opacity: 0.5;
+}

@@ -1,0 +1,8 @@
+.allmovieWrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    background-color: #0f1219;
+    height: 100vh;
+    width: 100%;
+    color: white;
+}

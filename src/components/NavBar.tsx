@@ -27,6 +27,7 @@ function NavBar() {
                         <button className={styles.searchBtn} type='submit'><CiSearch fontSize={24} /></button>
                     </form>
                     <div className={styles.navActions}>
+                        <Link className={styles.navLink} to='/all-movie'>Movie</Link>
                         <Link className={styles.navLink} to='/watch-list'>WatchList</Link>
                         <button className={styles.loginBtn}>Login</button>
                     </div>

@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 import { useSearchParams } from "react-router-dom"
-import { fetchTitleMovie, fetchSearchMovie, fetchGenres } from "../api/tmdb"
+import { fetchTitleMovie, fetchSearchMovie } from "../api/tmdb"
 import MovieList from '../components/MovieList'
 import Container from "../components/Container"
+import useFetchGenres from "../hooks/useFetchGenres"
 import styles from './SearchPage.module.css'
 
 function SearchPage() {
@@ -32,13 +33,7 @@ function SearchPage() {
         enabled: !!ai
     })
 
-    const { data: genresData, isLoading: isGenresLoading, isError: isGenresError } = useQuery({
-        queryKey: ['genres'],
-        queryFn: fetchGenres,
-        staleTime: 1000 * 60 * 60 * 24,
-        enabled: !!ai
-    })
-
+    const { data: genresData, isLoading: isGenresLoading, isError: isGenresError } = useFetchGenres(!!ai)
 
     if (isAiLoading || isLoading || isGenresLoading) return <div>Завантажується...</div>
     if (isAiError || isError || isGenresError || !data) return <div>Щось пішло не так...</div>

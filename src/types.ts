@@ -54,3 +54,10 @@ type Video = {
 }
 
 export type MovieWithGenres = Omit<MoviePreview, 'genres' > & { genres: string[] }
+
+type Country = {
+    iso_3166_1: string,
+    english_name: string,
+}
+
+export type Countries = Country[]
