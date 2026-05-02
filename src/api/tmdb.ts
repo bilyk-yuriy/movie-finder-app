@@ -20,17 +20,27 @@ export async function fetchPopularMovies(): Promise<MoviePreviewList> {
 
 export async function fetchUpcomingMovies(): Promise<MoviePreviewList> {
     const today = new Date().toISOString().split('T')[0]
-    return makeBodyFn(`${BASE_URl}/discover/movie?primary_release_date.gte=${today}&sort_by=popularity.desc`)
+    const future = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+    return makeBodyFn(`${BASE_URl}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${future}&sort_by=popularity.desc`)
 }
 
-export async function fetchTopRatedMovies(): Promise<MoviePreviewList> {
-    const [page1, page2, page3] = await Promise.all([
-        makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=1`),
-        makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=2`),
-        makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=3`),
-    ])
-    return { ...page1, results: [...page1.results, ...page2.results, ...page3.results] }
+export async function fetchTopRatedMovies(page: number): Promise<MoviePreviewList> {
+    return makeBodyFn(`${BASE_URl}/movie/top_rated?page=${page}`)
 }
+
+// export async function fetchTopRatedMovies(): Promise<MoviePreviewList> {
+    // return makeBodyFn(`${BASE_URl}/movie/top_rated`)
+// }
+
+/*
+const [page1, page2, page3] = await Promise.all([
+    makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=1`),
+    makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=2`),
+    makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=3`),
+])
+return { ...page1, results: [...page1.results, ...page2.results, ...page3.results] }
+*/
+
 
 export async function fetchMovie(id: number): Promise<MovieDetails> {
     return makeBodyFn(`${BASE_URl}/movie/${id}?append_to_response=recommendations,credits,videos`)
@@ -75,5 +85,5 @@ export async function fetchCountries(): Promise<Countries> {
 }
 
 
-    
-    
+
+

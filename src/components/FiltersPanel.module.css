@@ -1,14 +1,18 @@
-button,
-select {
-    cursor: pointer;
-}
-
 .genresContainer {
-    padding: 40px 0 0 30px;
-    border-right: 1px solid rgb(127, 127, 127);
+    position: sticky;
+    top: 70px;
+    box-sizing: border-box;
+    padding: 70px 0 0 30px;
+    border-right: 1px solid rgb(38, 37, 37);
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 70px);
     gap: 40px;
+}
+
+.genresContainer button,
+.genresContainer select {
+    cursor: pointer;
 }
 
 .genresContainer select {

@@ -1,5 +1,6 @@
 export type MoviePreviewList = {
     results: MoviePreview[]
+    total_pages: number
 }
 
 export type MoviePreview = {
@@ -61,3 +62,5 @@ type Country = {
 }
 
 export type Countries = Country[]
+
+export type Category = 'top250' | 'top500' | 'trending' | 'popular' | 'upcoming'

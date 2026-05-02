@@ -26,7 +26,7 @@ function App() {
           </Routes>
         </main>
         <Footer></Footer>
-      </div>
+        </div>
     </WatchListProvider>
   </BrowserRouter>
 }

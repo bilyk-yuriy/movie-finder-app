@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchCountries } from '../api/tmdb'
+import type { Category } from '../types'
 import FiltersPanel from '../components/FiltersPanel'
+import MoviesPanel from '../components/MoviesPanel'
 import useFetchGenres from '../hooks/useFetchGenres'
 import styles from './AllMoviePage.module.css'
 
@@ -20,6 +22,8 @@ function AllMoviePage() {
     const [rating, setRating] = useState(true)
     const [years, setYears] = useState(true)
     const [selectedYear, setSelectedYear] = useState('All')
+
+    const [active, setActive] = useState<Category>('top250')
 
     const yearsFrom = [2000, 1990, 1980, 1970, 1960, 1950, 1900]
     const yearsTo = [2025, 2024, 2023, 2022, 2021, 2020, 2015, 2010]
@@ -46,6 +50,10 @@ function AllMoviePage() {
             yearsFrom={yearsFrom}
             yearsTo={yearsTo}
             priorityCountries={priorityCountries} />
+        <MoviesPanel 
+            active={active}
+            setActive={setActive}
+        />
     </section>
 }
 

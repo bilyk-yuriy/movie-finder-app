@@ -5,13 +5,14 @@ type MovieListProp = {
     movies: MovieWithGenres[]
     variant?: 'default' | 'remove'
     showToast?: (movie: MovieWithGenres)=> void
+    showIndex?: boolean
 }
 
-function MovieList({ movies, variant, showToast }: MovieListProp) {
+function MovieList({ movies, variant, showToast, showIndex }: MovieListProp) {
 
     return <>
-        {movies.map(el =>
-            <MovieCard key={el.id} item={el} variant={variant} showToast={showToast}/>
+        {movies.map((el, index) =>
+            <MovieCard key={el.id} item={el} variant={variant} showToast={showToast} showIndex={showIndex ? index : undefined} />
         )}
     </>
 }

@@ -32,7 +32,7 @@ function MoviePage() {
 
     const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
 
-    return <>
+    return <div>
         <img className={styles.wrapper} src={`${BASE_URL}w1280${data.backdrop_path}`} alt="" />
         <img className={styles.poster} src={`${BASE_URL}w1280${data.poster_path}`} alt="" />
         <div>{data.title}</div>
@@ -59,7 +59,7 @@ function MoviePage() {
             </div>
         )}
 
-    </>
+    </div>
 }
 
 export default MoviePage

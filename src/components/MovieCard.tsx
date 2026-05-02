@@ -7,9 +7,10 @@ type MovieCardProp = {
     item: MovieWithGenres
     variant?: 'default' | 'remove'
     showToast?: (movie: MovieWithGenres)=> void
+    showIndex?: number
 }
 
-function MovieCard({ item, variant, showToast }: MovieCardProp) {
+function MovieCard({ item, variant, showToast, showIndex }: MovieCardProp) {
 
     const BASE_URL = 'https://image.tmdb.org/t/p/'
 
@@ -21,6 +22,7 @@ function MovieCard({ item, variant, showToast }: MovieCardProp) {
         : item.overview
 
     return <div className={styles.card}>
+            {showIndex !== undefined && <span>{showIndex + 1}</span>}
             {<Link className={styles.link} to={`/movie/${item.id}`}>{item.poster_path ? <img className={styles.poster} src={`${BASE_URL}w500${item.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}</Link>}
             <div>
                 {<Link className={styles.link} to={`/movie/${item.id}`}><h3>{item.title}</h3></Link>}
