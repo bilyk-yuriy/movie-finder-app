@@ -1,18 +1,15 @@
-import { useState, type Dispatch, type SetStateAction } from 'react'
+import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { fetchTopRatedMovies, fetchTrendingMovies, fetchPopularMovies, fetchUpcomingMovies } from '../api/tmdb'
 import type { Category } from '../types'
 import useFetchGenres from '../hooks/useFetchGenres'
 import Container from '../components/Container'
 import MovieList from './MovieList'
+import Pagination from './Pagination'
 import styles from '../components/MoviesPanel.module.css'
 
-type MoviesPanelProp = {
-    active: Category,
-    setActive: Dispatch<SetStateAction<Category>>,
-}
-
-function MoviesPanel({ active, setActive }: MoviesPanelProp) {
+function MoviesPanel() {
 
     const queryVariantCategoty = {
         top250: {key: 'topRatedMovie', fn: fetchTopRatedMovies},
@@ -24,32 +21,40 @@ function MoviesPanel({ active, setActive }: MoviesPanelProp) {
 
     const { data: genresData, isLoading: isGenresLoading, isError: isGenresError } = useFetchGenres()
 
-    const [page, setPage] = useState<number>(1)
+    const [currentPage, setCurrentPage] = useState<number>(1)
+
+    const [searchParams, setSearchParams] = useSearchParams()
+    const active = (searchParams.get('category') ?? 'top250') as Category
 
     const {key, fn} = queryVariantCategoty[active]
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: [key, page],
-        queryFn: ()=> fn(page),
+        queryKey: [key, currentPage],
+        queryFn: ()=> fn(currentPage),
     })
 
     if (isLoading || isGenresLoading) return <div>Завантажується</div>
     if (isError || isGenresError || !data|| !genresData) return <div>Щось пішло не так...</div>
 
-    const movies = data.results.map(el=> (
+    const allMovies = data.results.map(el=> (
         { ...el, genres: el.genre_ids.map(id => genresData.genres.find(item => item.id === id)?.name ?? '').filter(Boolean)}
     ))
+
+    const movies = active === 'top250' && currentPage === 13 ? allMovies.slice(0, 10) : allMovies
+
+    const totalPages = active === 'top250' ? 13 : active === 'top500' ? 25 : Math.min(data.total_pages, 500)
 
     return <div className={styles.moviesContainer}>
         <Container wide>
         <div className={styles.moviesCategory}>
-            <button onClick={() => setActive('top250')} className={active === 'top250' ? styles.active : ''}>TOP 250</button>
-            <button onClick={() => setActive('top500')} className={active === 'top500' ? styles.active : ''}>TOP 500</button>
-            <button onClick={() => setActive('trending')} className={active === 'trending' ? styles.active : ''}>TRENDING</button>
-            <button onClick={() => setActive('popular')} className={active === 'popular' ? styles.active : ''}>POPULAR</button>
-            <button onClick={() => setActive('upcoming')} className={active === 'upcoming' ? `${styles.active} ${styles.upcomingBtn}` : styles.lastBtn}>UPCOMING</button>
+            <button onClick={() => { setSearchParams({category: 'top250'}); setCurrentPage(1)}} className={active === 'top250' ? styles.active : ''}>TOP 250</button>
+            <button onClick={() => { setSearchParams({category: 'top500'}); setCurrentPage(1)}} className={active === 'top500' ? styles.active : ''}>TOP 500</button>
+            <button onClick={() => { setSearchParams({category: 'trending'}); setCurrentPage(1)}} className={active === 'trending' ? styles.active : ''}>TRENDING</button>
+            <button onClick={() => { setSearchParams({category: 'popular'}); setCurrentPage(1)}} className={active === 'popular' ? styles.active : ''}>POPULAR</button>
+            <button onClick={() => { setSearchParams({category: 'upcoming'}); setCurrentPage(1)}} className={active === 'upcoming' ? `${styles.active} ${styles.upcomingBtn}` : styles.lastBtn}>UPCOMING</button>
         </div>
-        <MovieList movies={movies} showIndex/>
+        <MovieList movies={movies} currentPage={currentPage} showIndex />
+        <Pagination totalPage={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
         </Container>
     </div>
 }

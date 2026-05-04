@@ -10,18 +10,18 @@ async function makeBodyFn<T>(url: string): Promise<T> {
 
 const BASE_URl = 'https://api.themoviedb.org/3'
 
-export async function fetchTrendingMovies(): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/trending/movie/week`)
+export async function fetchTrendingMovies(page: number): Promise<MoviePreviewList> {
+    return makeBodyFn(`${BASE_URl}/trending/movie/week?page=${page}`)
 }
 
-export async function fetchPopularMovies(): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/movie/popular`)
+export async function fetchPopularMovies(page: number): Promise<MoviePreviewList> {
+    return makeBodyFn(`${BASE_URl}/movie/popular?page=${page}`)
 }
 
-export async function fetchUpcomingMovies(): Promise<MoviePreviewList> {
+export async function fetchUpcomingMovies(page: number): Promise<MoviePreviewList> {
     const today = new Date().toISOString().split('T')[0]
     const future = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    return makeBodyFn(`${BASE_URl}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${future}&sort_by=popularity.desc`)
+    return makeBodyFn(`${BASE_URl}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${future}&sort_by=popularity.desc&page=${page}`)
 }
 
 export async function fetchTopRatedMovies(page: number): Promise<MoviePreviewList> {
