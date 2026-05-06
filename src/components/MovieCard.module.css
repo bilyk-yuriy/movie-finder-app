@@ -31,11 +31,6 @@
     font-family: 'Fira Code', monospace;
     font-weight: 700;
     font-size: 30px;
-    /* border-bottom: 1px solid white; */
-}
-
-.card:last-child {
-    border-bottom: 1px solid #22262d;
 }
 
 .poster {

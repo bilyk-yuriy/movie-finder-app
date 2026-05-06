@@ -6,10 +6,10 @@ function HomePage() {
 
     return <>
         <MainMovie />
-        <MovieSection queryKey={'trendingMovie'} queryFn={()=> fetchTrendingMovies(1)} title={'Тренди тиждня'}/>
-        <MovieSection queryKey={'popularMovie'} queryFn={()=> fetchPopularMovies(1)} title={'Популярні'}/>
-        <MovieSection queryKey={'upcomingMovie'} queryFn={()=> fetchUpcomingMovies(1)} title={'Скоро в кіно'}/>
-        <MovieSection queryKey={'topRatedMovie'} queryFn={()=> fetchTopRatedMovies(1)} title={'Топ'}/>
+        <MovieSection queryKey={'trendingMovie'} queryFn={fetchTrendingMovies} title={'Trending week'}/>
+        <MovieSection queryKey={'popularMovie'} queryFn={()=> fetchPopularMovies()} title={'Popular'}/>
+        <MovieSection queryKey={'upcomingMovie'} queryFn={()=> fetchUpcomingMovies()} title={'Upcoming'}/>
+        <MovieSection queryKey={'topRatedMovie'} queryFn={()=> fetchTopRatedMovies()} title={'Top'}/>
     </>
 }
 

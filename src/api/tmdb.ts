@@ -8,39 +8,39 @@ async function makeBodyFn<T>(url: string): Promise<T> {
     return response.json()
 }
 
+function getParams(page?: number, genreId?: number, country?: string, voteAverage?: number, releaseDateFrom?: string, releaseDateTo?: string) {
+    const params = new URLSearchParams()
+    if (page) params.append('page', String(page))
+    if (genreId) params.append('with_genres', String(genreId))
+    if (country) params.append('with_origin_country', country)
+    if (voteAverage) params.append('vote_average.gte', String(voteAverage))
+    if (releaseDateFrom) params.append('primary_release_date.gte', releaseDateFrom)
+    if (releaseDateTo) params.append('primary_release_date.lte', releaseDateTo)
+    return params.toString()
+}
+
 const BASE_URl = 'https://api.themoviedb.org/3'
 
-export async function fetchTrendingMovies(page: number): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/trending/movie/week?page=${page}`)
+export async function fetchTrendingMovies(): Promise<MoviePreviewList> {
+    return makeBodyFn(`${BASE_URl}/trending/movie/week`)
 }
 
-export async function fetchPopularMovies(page: number): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/movie/popular?page=${page}`)
+export async function fetchPopularMovies(page?: number, genreId?: number, country?: string, voteAverage?: number, releaseDateFrom?: string, releaseDateTo?: string): Promise<MoviePreviewList> {
+    const params = getParams(page, genreId, country, voteAverage, releaseDateFrom, releaseDateTo)
+    return makeBodyFn(`${BASE_URl}/discover/movie?sort_by=popularity.desc&vote_count.gte=200&without_genres=10770${params ? `&${params}` : ''}`)
 }
 
-export async function fetchUpcomingMovies(page: number): Promise<MoviePreviewList> {
+export async function fetchUpcomingMovies(page?: number, genreId?: number, country?: string, voteAverage?: number, releaseDateFrom?: string, releaseDateTo?: string): Promise<MoviePreviewList> {
     const today = new Date().toISOString().split('T')[0]
     const future = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    return makeBodyFn(`${BASE_URl}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${future}&sort_by=popularity.desc&page=${page}`)
+    const params = getParams(page, genreId, country, voteAverage, releaseDateFrom, releaseDateTo)
+    return makeBodyFn(`${BASE_URl}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${future}&sort_by=popularity.desc&without_genres=99,10770${params ? `&${params}` : ''}`)
 }
 
-export async function fetchTopRatedMovies(page: number): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/movie/top_rated?page=${page}`)
+export async function fetchTopRatedMovies(page?: number, genreId?: number, country?: string, voteAverage?: number, releaseDateFrom?: string, releaseDateTo?: string): Promise<MoviePreviewList> {
+    const params = getParams(page, genreId, country, voteAverage, releaseDateFrom, releaseDateTo)
+    return makeBodyFn(`${BASE_URl}/discover/movie?sort_by=vote_average.desc&vote_count.gte=500&without_genres=99,10770${params ? `&${params}` : ''}`)
 }
-
-// export async function fetchTopRatedMovies(): Promise<MoviePreviewList> {
-    // return makeBodyFn(`${BASE_URl}/movie/top_rated`)
-// }
-
-/*
-const [page1, page2, page3] = await Promise.all([
-    makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=1`),
-    makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=2`),
-    makeBodyFn<MoviePreviewList>(`${BASE_URl}/movie/top_rated?page=3`),
-])
-return { ...page1, results: [...page1.results, ...page2.results, ...page3.results] }
-*/
-
 
 export async function fetchMovie(id: number): Promise<MovieDetails> {
     return makeBodyFn(`${BASE_URl}/movie/${id}?append_to_response=recommendations,credits,videos`)
