@@ -8,8 +8,8 @@ function AllMoviePage() {
 
     const { data: genresData, isLoading: isGenresLoading, isError: isGenresError } = useFetchGenres()
 
-    const [genres, setGenres] = useState<number | undefined>(undefined)
-    const [country, setCountry] = useState<string | undefined>(undefined)
+    const [genres, setGenres] = useState<number[]>([])
+    const [country, setCountry] = useState<string[]>([])
     const [voteAverage, setVoteAverage] = useState<number | undefined>(undefined)
     const [releaseDateFrom, setReleaseDateFrom] = useState<string | undefined>(undefined)
     const [releaseDateTo, setReleaseDateTo] = useState<string | undefined>(undefined)

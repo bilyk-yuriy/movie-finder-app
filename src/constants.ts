@@ -1,7 +1,6 @@
 import type { Countries } from "./types"
 
 export const priorityCountries: Countries = [
-    { iso_3166_1: '', english_name: 'ALL' },
     { iso_3166_1: 'US', english_name: 'USA' },
     { iso_3166_1: 'GB', english_name: 'United Kingdom' },
     { iso_3166_1: 'FR', english_name: 'France' },
@@ -12,7 +11,7 @@ export const priorityCountries: Countries = [
     { iso_3166_1: 'RU', english_name: 'Russia' },
 ]
 
-export const longCountries: Countries = [
+export const shortCountries: Countries = [
     { iso_3166_1: 'AE', english_name: 'UAE' },
     { iso_3166_1: 'GS', english_name: 'South Georgia & S.S.' },
     { iso_3166_1: 'IO', english_name: 'Brit. Indian Ocean' },
@@ -29,6 +28,22 @@ export const longCountries: Countries = [
     { iso_3166_1: 'HM', english_name: 'Heard & McDonald Is.' },
 ];
 
-export const yearsFrom = [2000, 1990, 1980, 1970, 1960, 1950, 1900]
-export const yearsTo = [2025, 2024, 2023, 2022, 2021, 2020, 2015, 2010]
+export const yearsFrom: number[] = []
+for (let i = 1870; i <= 2029; i++ ) {
+    yearsFrom.push(i)
+}
+
+export const yearsTo: number[] = []
+for (let i = 2029; i >= 1870; i-- ) {
+    yearsTo.push(i)
+}
+
+
+
+export const ratingOptions = [
+        {value: 10, name: '10'},
+        {value: 9, name: '9+'},
+        {value: 8, name: '8+'},
+        {value: 7, name: '7+'},
+    ]
 

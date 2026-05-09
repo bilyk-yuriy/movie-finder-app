@@ -1,0 +1,36 @@
+.variantContainer {
+    position: absolute;
+    z-index: 200;
+    margin-top: 10px;
+    max-height: 230px;
+    width: 170px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 5px;
+    overflow-y: auto;
+    border: 1px solid rgb(63, 63, 63);
+    overscroll-behavior: none;
+}
+
+.input {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.variantContainer button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(32, 32, 32);
+    color: white;
+    border: none;
+    height: 35px;
+    width: 100%;
+    transition: all 0.3s;
+    padding-right: auto;
+}
+
+.variantContainer button:hover {
+    background-color: rgb(95, 94, 94);
+}

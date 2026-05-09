@@ -10,8 +10,8 @@ import Pagination from './Pagination'
 import styles from '../components/MoviesPanel.module.css'
 
 type MoviePanelProp = {
-    genres: number | undefined
-    country: string | undefined
+    genres: number[]
+    country: string[]
     voteAverage: number | undefined
     releaseDateFrom: string | undefined
     releaseDateTo: string | undefined

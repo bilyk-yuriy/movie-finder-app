@@ -18,6 +18,8 @@ function MovieSection({queryKey, queryFn, title}: MovieSectionProp) {
         queryFn: queryFn
     })
 
+    console.log(data)
+
     if (isLoading) return <div>Завантажується...</div>
     if (isError) return <div>Щось пішло не так...</div>
 
