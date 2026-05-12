@@ -1,5 +1,8 @@
 import type { Countries } from "./types"
 
+export const BASE_URl = 'https://api.themoviedb.org/3'
+export const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/'
+
 export const priorityCountries: Countries = [
     { iso_3166_1: 'US', english_name: 'USA' },
     { iso_3166_1: 'GB', english_name: 'United Kingdom' },
@@ -28,13 +31,16 @@ export const shortCountries: Countries = [
     { iso_3166_1: 'HM', english_name: 'Heard & McDonald Is.' },
 ];
 
+export const MIN_YEAR = 1870
+export const MAX_YEAR = 2029
+
 export const yearsFrom: number[] = []
-for (let i = 1870; i <= 2029; i++ ) {
+for (let i = MIN_YEAR; i <= MAX_YEAR; i++ ) {
     yearsFrom.push(i)
 }
 
 export const yearsTo: number[] = []
-for (let i = 2029; i >= 1870; i-- ) {
+for (let i = MAX_YEAR; i >= MIN_YEAR; i-- ) {
     yearsTo.push(i)
 }
 
@@ -46,4 +52,6 @@ export const ratingOptions = [
         {value: 8, name: '8+'},
         {value: 7, name: '7+'},
     ]
+
+export const validCategories = ['top250', 'top500', 'popular', 'upcoming']
 

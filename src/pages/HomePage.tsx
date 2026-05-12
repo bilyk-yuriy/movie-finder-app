@@ -6,7 +6,7 @@ function HomePage() {
 
     return <>
         <MainMovie />
-        <MovieSection queryKey={'trendingMovie'} queryFn={fetchTrendingMovies} title={'Trending week'}/>
+        <MovieSection queryKey={'trendingMovie'} queryFn={fetchTrendingMovies} title={'Trending this week'}/>
         <MovieSection queryKey={'popularMovie'} queryFn={()=> fetchPopularMovies()} title={'Popular'}/>
         <MovieSection queryKey={'upcomingMovie'} queryFn={()=> fetchUpcomingMovies()} title={'Upcoming'}/>
         <MovieSection queryKey={'topRatedMovie'} queryFn={()=> fetchTopRatedMovies()} title={'Top'}/>

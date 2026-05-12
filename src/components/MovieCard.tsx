@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import type { MovieWithGenres } from "../types"
 import WatchlistBtn from "./WatchListBtn"
+import { BASE_URL_IMAGE } from "../constants"
 import styles from './MovieCard.module.css'
 
 type MovieCardProp = {
@@ -13,8 +14,6 @@ type MovieCardProp = {
 
 function MovieCard({ item, variant, showToast, currentPage, showIndex }: MovieCardProp) {
 
-    const BASE_URL = 'https://image.tmdb.org/t/p/'
-
     const release = item.release_date.slice(0, 4)
     const genres = item.genres.join(', ')
     const rating = item.vote_average.toFixed(1)
@@ -24,7 +23,7 @@ function MovieCard({ item, variant, showToast, currentPage, showIndex }: MovieCa
 
     return <div className={styles.card}>
             {showIndex !== undefined && currentPage && <span>{showIndex + 1 + (currentPage - 1) * 20}</span>}
-            {<Link className={styles.link} to={`/movie/${item.id}`}>{item.poster_path ? <img className={styles.poster} src={`${BASE_URL}w500${item.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}</Link>}
+            {<Link className={styles.link} to={`/movie/${item.id}`}>{item.poster_path ? <img className={styles.poster} src={`${BASE_URL_IMAGE}w500${item.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}</Link>}
             <div>
                 {<Link className={styles.link} to={`/movie/${item.id}`}><h3>{item.title}</h3></Link>}
                 <div>{release}</div>

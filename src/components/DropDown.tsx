@@ -10,7 +10,7 @@ type DropDownProp<T> = {
     closeDropDown?: ()=> void 
 }
 
-function DropDown<T>({isSingleSelect, input, options, selectOption, resetOptions, selected, closeDropDown}: DropDownProp<T>) {
+function DropDown<T>({ isSingleSelect, input, options, selectOption, resetOptions, selected, closeDropDown}: DropDownProp<T>) {
 
     return <div className={`${styles.variantContainer} ${input ? styles.input : ''}`}>
         {!input && <button onClick={()=> {resetOptions?.(); isSingleSelect && closeDropDown !== undefined && closeDropDown()}}><span>ALL</span><span>{selected?.length === 0 && '✓'}</span></button>}

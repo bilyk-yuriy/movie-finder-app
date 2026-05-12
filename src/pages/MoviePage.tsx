@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { fetchMovie } from "../api/tmdb"
 import type { MovieWithGenres } from "../types"
 import WatchlistBtn from '../components/WatchListBtn'
+import { BASE_URL_IMAGE } from "../constants"
 import styles from './MoviePage.module.css'
 
 
@@ -18,9 +19,6 @@ function MoviePage() {
     if (isLoading) return <div>Завантажується...</div>
     if (isError || !data) return <div>Щось сталось не так...</div>
 
-    const BASE_URL = 'https://image.tmdb.org/t/p/'
-
-
     const genres = data.genres.map(el => el.name).join(', ')
     const release = data.release_date.slice(0, 4)
     const trailer = data.videos.results.find(el => el.official === true && el.type === 'Trailer')?.key
@@ -33,8 +31,8 @@ function MoviePage() {
     const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
 
     return <div>
-        <img className={styles.wrapper} src={`${BASE_URL}w1280${data.backdrop_path}`} alt="" />
-        <img className={styles.poster} src={`${BASE_URL}w1280${data.poster_path}`} alt="" />
+        <img className={styles.wrapper} src={`${BASE_URL_IMAGE}w1280${data.backdrop_path}`} alt="" />
+        <img className={styles.poster} src={`${BASE_URL_IMAGE}w1280${data.poster_path}`} alt="" />
         <div>{data.title}</div>
         <div>{release}</div>
         <div> • {genres} • </div>
@@ -46,7 +44,7 @@ function MoviePage() {
 
         {actors.map((el, index) =>
             <div key={index}>
-                {el.profile_path ? <img className={styles.poster} src={`${BASE_URL}w500${el.profile_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}
+                {el.profile_path ? <img className={styles.poster} src={`${BASE_URL_IMAGE}w500${el.profile_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}
                 <div>{el.name}</div>
                 <div>{el.character ? el.character : 'персонаж відсутній'}</div>
             </div>
@@ -54,7 +52,7 @@ function MoviePage() {
 
          {recommendations.map((el, index) =>
             <div key={index}>
-                {el.poster_path ? <img className={styles.poster} src={`${BASE_URL}w1280${el.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}
+                {el.poster_path ? <img className={styles.poster} src={`${BASE_URL_IMAGE}w1280${el.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}
                 <div>{el.title}</div>
             </div>
         )}

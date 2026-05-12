@@ -7,6 +7,7 @@ import { fetchTrendingMovies, fetchFullMovie } from "../api/tmdb"
 import Container from './Container'
 import WatchlistBtn from './WatchListBtn';
 import { WatchListContext } from '../contexts/WatchListContext';
+import { BASE_URL_IMAGE } from '../constants';
 import styles from './MainMovie.module.css'
 import type { MovieWithGenres } from '../types';
 
@@ -46,7 +47,6 @@ function MainMovie() {
     if (isTrendingLoading || isLoading) return <div>Завантажується...</div>
     if (isTrendingError || isError || !data) return <div>Щось пішло не так...</div>
 
-    const BASE_URL = 'https://image.tmdb.org/t/p/'
     const found = watchlist.find(el => el.id === data.id)
     const release = data.release_date.slice(0, 4)
     const hours = Math.floor(data.runtime / 60)
@@ -60,12 +60,12 @@ function MainMovie() {
 
     const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
 
-    return <section className={styles.mainmovieWrapper} style={{ backgroundImage: `url(${BASE_URL}w1280${data.backdrop_path})` }}>
+    return <section className={styles.mainmovieWrapper} style={{ backgroundImage: `url(${BASE_URL_IMAGE}w1280${data.backdrop_path})` }}>
         <Container>
             <div className={styles.mainmovieContent}>
                 <div className={styles.posterContainer}>
                     <Link to={`/movie/${data.id}`}>
-                        <img className={styles.poster} src={`${BASE_URL}w500${data.poster_path}`} alt="" />
+                        <img className={styles.poster} src={`${BASE_URL_IMAGE}w500${data.poster_path}`} alt="" />
                     </Link>
                     <button onClick={() => toggleWatchList(movie)} className={styles.bookmarkBtn}>
                         {found ? <BsBookmarkHeartFill title='add to watchlist' /> : <FaBookmark title='add to watchlist' />}
