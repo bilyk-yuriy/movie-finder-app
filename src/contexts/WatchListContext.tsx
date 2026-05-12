@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import type { MovieWithGenres } from '../types'
 
 type WatchListProviderProp = {
@@ -8,9 +8,16 @@ type WatchListProviderProp = {
 
 export const WatchListContext = createContext<WatchListProviderProp | null>(null)
 
-export function WatchListProvider( {children} : { children: React.ReactNode }) {
-    
-    const [watchlist, setWatchlist] = useState<MovieWithGenres[]>([])
+export function WatchListProvider({ children }: { children: React.ReactNode }) {
+
+    const [watchlist, setWatchlist] = useState<MovieWithGenres[]>(() => {
+        const saved = localStorage.getItem('watchlist')
+        return saved ? JSON.parse(saved) : []
+    })
+
+    useEffect(()=> {
+        localStorage.setItem('watchlist', JSON.stringify(watchlist))
+    }, [watchlist])    
 
     function toggleWatchList(movie: MovieWithGenres) {
         const found = watchlist.find(el => el.id === movie.id)
@@ -18,7 +25,7 @@ export function WatchListProvider( {children} : { children: React.ReactNode }) {
     }
 
     return <>
-        <WatchListContext.Provider value={{watchlist, toggleWatchList}} >
+        <WatchListContext.Provider value={{ watchlist, toggleWatchList }} >
             {children}
         </WatchListContext.Provider>
     </>
