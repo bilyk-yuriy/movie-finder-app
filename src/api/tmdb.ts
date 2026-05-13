@@ -57,7 +57,7 @@ export async function fetchTitleMovie(userText: string): Promise<string> {
             'Authorization': `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`
         },
         body: JSON.stringify({
-            model: 'llama-3.1-8b-instant',
+            model: 'llama-3.3-70b-versatile',
             messages: [{
                 role: 'user',
                 content: `Ти помічник для кіносайту. Виправ назву фільму або знайди її за описом: "${userText}". Напиши ТІЛЬКИ офіційну назву фільму англійською мовою, без лапок, без крапки, без пояснень.`

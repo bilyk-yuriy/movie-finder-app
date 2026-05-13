@@ -27,6 +27,10 @@
     color: white;
 }
 
+.searchWrapper {
+    position: relative;
+}
+
 .searchForm {
     position: relative;
 }
