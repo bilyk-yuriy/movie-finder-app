@@ -31,10 +31,14 @@
     background-color: rgb(32, 32, 32);
     color: white;
     border: none;
-    height: 35px;
+    height: 45px;
     width: 100%;
     transition: all 0.3s;
     padding-right: auto;
+}
+
+.variantContainer.search {
+    max-height: 450px;
 }
 
 .variantContainer button:hover {
@@ -56,15 +60,25 @@
     gap: 10px;
 }
 
+.poster {
+    height: 35px;
+}
+
 .deleteBtn {
     height: 20px;
     width: 20px;
     font-size: 18px;
     border-radius: 20px;
+    opacity: 0;
     transition: all 0.3s;
 }
 
 .deleteBtn:hover {
     background-color: rgb(180, 180, 180);
+    opacity: 1;
     color: rgb(57, 57, 57);
+}
+
+.variantContainer.search button:hover .deleteBtn {
+    opacity: 1;
 }

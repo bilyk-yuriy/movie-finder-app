@@ -71,8 +71,8 @@ export async function fetchTitleMovie(userText: string): Promise<string> {
     return data.choices[0].message.content.trim()
 }
 
-export async function fetchSearchMovie(aiResponse: string): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/search/movie?query=${encodeURIComponent(aiResponse)}`)
+export async function fetchSearchMovie(searchQuery: string): Promise<MoviePreviewList> {
+    return makeBodyFn(`${BASE_URl}/search/movie?query=${encodeURIComponent(searchQuery)}`)
 }
 
 export async function fetchGenres(): Promise<Genres> {

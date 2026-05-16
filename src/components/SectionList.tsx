@@ -13,7 +13,7 @@ function CardList({ movies }: CardListProp) {
 
     const listRef = useRef<HTMLDivElement>(null)
 
-    function handleClick(direction: 'left' | 'right') {
+    function scrollList(direction: 'left' | 'right') {
 
         if (!listRef.current) return
 
@@ -33,8 +33,8 @@ function CardList({ movies }: CardListProp) {
 
     return <>
         <div className={styles.wrapper}>
-            <button className={styles.leftBtn} onClick={() => handleClick('left')}><IoIosArrowBack size={40}/></button>
-            <button className={styles.rightBtn} onClick={() => handleClick('right')}><IoIosArrowForward size={40}/></button>
+            <button className={styles.leftBtn} onClick={() => scrollList('left')}><IoIosArrowBack size={40}/></button>
+            <button className={styles.rightBtn} onClick={() => scrollList('right')}><IoIosArrowForward size={40}/></button>
             <div className={styles.cardList} ref={listRef}>
                 {movies.map(el =>
                     <SectionCard key={el.id} item={el} />

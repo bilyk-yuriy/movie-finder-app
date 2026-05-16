@@ -18,7 +18,7 @@ function SearchPage() {
             return fetchTitleMovie(query)
         },
         enabled: !!query,
-        staleTime: 1000 * 60 * 5,
+        staleTime: Infinity,
         retry: false
     })
 
@@ -36,7 +36,7 @@ function SearchPage() {
     const { data: genresData, isLoading: isGenresLoading, isError: isGenresError } = useFetchGenres(!!ai)
 
     if (isAiLoading || isLoading || isGenresLoading) return <div>Завантажується...</div>
-    if (isAiError || isError || isGenresError || !data) return <div>Щось пішло не так...</div>
+    if (isAiError || isError || isGenresError || !data || !genresData) return <div>Щось пішло не так...</div>
 
     const movies = data.results.map(el => ({
         ...el, genres: el.genre_ids.map(id => genresData?.genres.find(item => item.id === id)?.name ?? '').filter(Boolean)
