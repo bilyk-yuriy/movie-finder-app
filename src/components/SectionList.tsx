@@ -6,9 +6,10 @@ import styles from './SectionList.module.css'
 
 type CardListProp = {
     movies: MoviePreview[]
+    upcoming?: boolean
 }
 
-function CardList({ movies }: CardListProp) {
+function CardList({ movies, upcoming }: CardListProp) {
 
     const {listRef, atStart, atEnd, scrollList} = useListRef(movies, 4)
 
@@ -18,7 +19,7 @@ function CardList({ movies }: CardListProp) {
             {movies.length > 5 && !atEnd && <ScrollBtn type={'right'} scrollList={()=> scrollList('right')}/>}
             <div className={styles.cardList} ref={listRef}>
                 {movies.map(el =>
-                    <SectionCard key={el.id} item={el} />
+                    <SectionCard key={el.id} item={el} upcoming={upcoming}/>
                 )}
             </div>
         </div>

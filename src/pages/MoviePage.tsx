@@ -44,6 +44,7 @@ function MoviePage() {
     const hours = Math.floor(data.runtime / 60)
     const minutes = data.runtime % 60
     const runtime = data.runtime ? hours ? `${hours}h ${minutes}m` : minutes ? `${minutes}m` : undefined : 'unknown'
+    const rating = data.vote_average && data.vote_count > 100 ? `✩ ${data.vote_average.toFixed(1)}` : 'unknown'
     const budget = data.budget !== 0 ? `${String(data.budget).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} $` : 'unknown'
     const releaseDateMovie = data.release_date?.replaceAll('-', '') ?? ''
     const today = new Date().toISOString().split('T')[0].replaceAll('-', '')
@@ -81,6 +82,8 @@ function MoviePage() {
                         <span>{companies}</span>
                         <span className={styles.leftColumn}>Running time</span>
                         <span>{runtime}</span>
+                        <span>Rating</span>
+                        <span>{rating}</span>
                         <span className={styles.leftColumn}>Budget</span>
                         <span>{budget}</span>
                         <span className={styles.leftColumn}>Revenue</span>

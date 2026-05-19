@@ -1,6 +1,7 @@
 .card {
+    position: relative;
     width: 200px;
-    height: 360px;
+    height: auto;
     color: white;
 }
 

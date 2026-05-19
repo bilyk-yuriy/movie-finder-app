@@ -9,9 +9,10 @@ type MovieSectionProp = {
     queryKey: string,
     queryFn: () => Promise<MoviePreviewList>,
     title: string,
+    upcoming?: boolean
 }
 
-function MovieSection({queryKey, queryFn, title}: MovieSectionProp) {
+function MovieSection({queryKey, queryFn, title, upcoming}: MovieSectionProp) {
 
     const { data, isLoading, isError } = useQuery({
         queryKey: [queryKey],
@@ -24,7 +25,7 @@ function MovieSection({queryKey, queryFn, title}: MovieSectionProp) {
     return <section className={styles.moviesectionWrapper}>
         <Container wide>
             <h2 className={styles.title} >{title}</h2>
-            <SectionList movies={data?.results ?? []} />
+            <SectionList movies={data?.results ?? []} upcoming={upcoming}/>
         </Container>
     </section>
 }
