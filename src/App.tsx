@@ -5,6 +5,7 @@ import WatchListPage from "./pages/WatchListPage"
 import AllMoviePage from "./pages/AllMoviePage"
 import SearchPage from "./pages/SearchPage"
 import MoviePage from "./pages/MoviePage"
+import ActorPage from "./pages/ActorPage"
 import Footer from "./components/Footer"
 import { WatchListProvider } from "./contexts/WatchListContext"
 import './App.css'
@@ -23,6 +24,7 @@ function App() {
             <Route path='/all-movie' element={<AllMoviePage />} />
             <Route path='/watch-list' element={<WatchListPage />} />
             <Route path='/movie/:id' element={<MoviePage />} />
+            <Route path='/actor/:id' element={<ActorPage />}/>
           </Routes>
         </main>
         <Footer></Footer>

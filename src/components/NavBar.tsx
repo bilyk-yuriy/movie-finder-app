@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDebounceValue } from 'usehooks-ts'
 import { CiSearch } from "react-icons/ci"
 import Container from './Container'
@@ -21,6 +21,8 @@ function NavBar() {
     const inputRef = useRef<HTMLInputElement>(null)
     const navigate = useNavigate()
 
+    const { pathname } = useLocation()
+
     const isAllowed = (text: string) => /^[a-zA-Z0-9\s\-:]+$/.test(text)
 
     const { data: titleMovieData } = useQuery({
@@ -29,7 +31,7 @@ function NavBar() {
         enabled: debouncedValue.length >= 3 && isAllowed(debouncedValue)
     })
 
-    const suggestions = titleMovieData?.results.filter(el => el.vote_count > 500).slice(0, 5).map(item => ({ title: item.title.length > 30 ? `${item.title.slice(0, 30)}...` : item.title, poster: item.poster_path }))
+    const suggestions = titleMovieData?.results.filter(el => el.vote_count > 500).slice(0, 5).map(item => ({ title: item.title.length > 25 ? `${item.title.slice(0, 25)}...` : item.title, poster: item.poster_path }))
 
     useEffect(() => {
         localStorage.setItem('history', JSON.stringify(history))
@@ -95,8 +97,8 @@ return <>
                     </form>
                 </div>
                 <div className={styles.navActions}>
-                    <Link className={styles.navLink} to='/all-movie'>Movie</Link>
-                    <Link className={styles.navLink} to='/watch-list'>WatchList</Link>
+                    <Link className={`${pathname === '/all-movie' ? styles.navLinkActive : styles.navLink}`} to='/all-movie'>Movie</Link>
+                    <Link className={`${pathname === '/watch-list' ? styles.navLinkActive : styles.navLink}`} to='/watch-list'>WatchList</Link>
                     <button className={styles.loginBtn}>Login</button>
                 </div>
             </nav>

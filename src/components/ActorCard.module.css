@@ -1,0 +1,49 @@
+.card {
+    cursor: pointer;
+    color: white;
+}
+
+.poster {
+    height: 210px;
+    width: 140px;
+    transition: all 0.3s;
+}
+
+.card:hover .poster {
+    filter: brightness(0.7);
+    scale: 1.05;
+}
+
+.emptyPoster {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 210px;
+    width: 140px;
+    background-color: black;
+    color: white;
+}
+
+.info {
+    margin-top: 5px;
+    width: 140px;
+    transition: all 0.3s;
+}
+
+.card:hover .info {
+    scale: 1.05;
+}
+
+.name {
+    transition: all 0.3s;
+}
+
+.card:hover .name {
+    color: orange;
+}
+
+.character {
+    margin-top: 5px;
+    opacity: 0.7;
+}

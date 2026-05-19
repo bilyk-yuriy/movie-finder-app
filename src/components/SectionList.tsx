@@ -1,8 +1,7 @@
-import { useRef } from 'react'
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
 import type { MoviePreview } from "../types"
 import SectionCard from "./SectionCard"
+import ScrollBtn from './ScrollBtn';
+import useListRef from '../hooks/useListRef';
 import styles from './SectionList.module.css'
 
 type CardListProp = {
@@ -11,30 +10,12 @@ type CardListProp = {
 
 function CardList({ movies }: CardListProp) {
 
-    const listRef = useRef<HTMLDivElement>(null)
-
-    function scrollList(direction: 'left' | 'right') {
-
-        if (!listRef.current) return
-
-        const card = listRef.current?.children[0] as HTMLElement
-        const cardWidth = card.clientWidth + 20
-
-        const remainder = listRef.current.scrollLeft % cardWidth
-
-        const forwardRight = remainder === 0 ? cardWidth * 4 : cardWidth * 4 + (cardWidth - remainder)
-        const forwardLeft = remainder === 0 ? cardWidth * 4 : cardWidth * 4 + remainder
-
-        listRef.current?.scrollBy({
-            left: direction === 'left' ? -(forwardLeft) : forwardRight,
-            behavior: 'smooth'
-        })
-    }
+    const {listRef, atStart, atEnd, scrollList} = useListRef(movies, 4)
 
     return <>
-        <div className={styles.wrapper}>
-            <button className={styles.leftBtn} onClick={() => scrollList('left')}><IoIosArrowBack size={40}/></button>
-            <button className={styles.rightBtn} onClick={() => scrollList('right')}><IoIosArrowForward size={40}/></button>
+        <div className={styles.wrapper}> 
+            {movies.length > 5 && !atStart && <ScrollBtn type={'left'} scrollList={()=> scrollList('left')}/>}
+            {movies.length > 5 && !atEnd && <ScrollBtn type={'right'} scrollList={()=> scrollList('right')}/>}
             <div className={styles.cardList} ref={listRef}>
                 {movies.map(el =>
                     <SectionCard key={el.id} item={el} />

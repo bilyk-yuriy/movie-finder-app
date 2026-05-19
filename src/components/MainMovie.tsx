@@ -51,7 +51,7 @@ function MainMovie() {
     const release = data.release_date.slice(0, 4)
     const hours = Math.floor(data.runtime / 60)
     const minutes = data.runtime % 60
-    const textRunTime = `${hours}г ${minutes}хв`
+    const textRunTime = `${hours}h ${minutes}m`
     const genre = data.genres.map(el => el.name).join(', ')
     const rating = data.vote_average.toFixed(1)
     const description = data.overview.length > 100

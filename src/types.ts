@@ -22,8 +22,14 @@ export type MoviePreview = {
 }
 
 export type Movie = MoviePreview & {
+    adult: boolean
     genres: Genre[],
     runtime: number,
+    production_countries: ProductionCountries[],
+    tagline: string,
+    budget: number,
+    production_companies: ProductionCompanies[],
+    revenue: number
 }
 
 export type MovieDetails = Movie & {
@@ -41,11 +47,11 @@ export type Genre = {
     name: string
 }
 
-type Actor = {
+export type Actor = {
+    id: number
     name: string,
     character: string,
     profile_path: string | null
-
 }
 
 type Video = {
@@ -61,6 +67,15 @@ export type Countries = Country[]
 type Country = {
     iso_3166_1: string,
     english_name: string,
+}
+
+type ProductionCountries = {
+    iso_3166_1: string,
+    name: string
+}
+
+type ProductionCompanies = {
+    name: string
 }
 
 export type Category = 'top250' | 'top500' | 'popular' | 'upcoming'

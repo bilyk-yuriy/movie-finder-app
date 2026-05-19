@@ -1,8 +1,15 @@
+import {  useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
+import { FaPlay } from "react-icons/fa";
 import { fetchMovie } from "../api/tmdb"
 import type { MovieWithGenres } from "../types"
 import WatchlistBtn from '../components/WatchListBtn'
+import Container from "../components/Container"
+import MediaList from "../components/MediaList"
+import ActorCard from "../components/ActorCard"
+import RecomendationCard from "../components/RecomendationCard"
+import TrailerModal from "../components/TrailerModal"
 import { BASE_URL_IMAGE } from "../constants"
 import styles from './MoviePage.module.css'
 
@@ -16,48 +23,80 @@ function MoviePage() {
         queryFn: () => fetchMovie(Number(id))
     })
 
+    const [isOpenTrailer, setIsOpenTrailer] = useState(false)
+
+    useEffect(()=> {
+        document.body.style.overflow = isOpenTrailer ? 'hidden' : ''
+    }, [isOpenTrailer])
+
     if (isLoading) return <div>Завантажується...</div>
     if (isError || !data) return <div>Щось сталось не так...</div>
 
-    const genres = data.genres.map(el => el.name).join(', ')
-    const release = data.release_date.slice(0, 4)
+    const movie: MovieWithGenres = { ...data, genres: data.genres.map(el => el.name) }
+
     const trailer = data.videos.results.find(el => el.official === true && el.type === 'Trailer')?.key
+    const title = data.title || 'unknown'
+    const description = data.overview || 'unknown'
+    const release = data.release_date || 'unknown'
+    const countries = data.production_countries.length !== 0 ? data.production_countries.map(el => el.name).join(',') : 'unknown'
+    const genres = data.genres.length !== 0 ? data.genres.map(el => el.name).join(', ') : 'unknown'
+    const companies = data.production_companies.length !== 0 ? data.production_companies.map(el => el.name).join(', ') : 'unknown'
     const hours = Math.floor(data.runtime / 60)
     const minutes = data.runtime % 60
-    const runtime = hours ? `${hours}г ${minutes}хв` : minutes ? `${minutes}хв` : undefined
+    const runtime = data.runtime ? hours ? `${hours}h ${minutes}m` : minutes ? `${minutes}m` : undefined : 'unknown'
+    const budget = data.budget !== 0 ? `${String(data.budget).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} $` : 'unknown'
+    const releaseDateMovie = data.release_date?.replaceAll('-', '') ?? ''
+    const today = new Date().toISOString().split('T')[0].replaceAll('-', '')
+    const revenue = !releaseDateMovie ? 'unknown' : today < releaseDateMovie ? 'upcoming' : data.revenue === 0 ? 'unknown' : `${String(data.revenue).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} $`
+    const tagline = data.tagline ? `«${data.tagline}»` : 'unknown'
     const actors = data.credits.cast.slice(0, 20)
     const recommendations = data.recommendations.results.filter(el => el.vote_count > 2000).slice(0, 20)
-
-    const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
-
-    return <div>
-        <img className={styles.wrapper} src={`${BASE_URL_IMAGE}w1280${data.backdrop_path}`} alt="" />
-        <img className={styles.poster} src={`${BASE_URL_IMAGE}w1280${data.poster_path}`} alt="" />
-        <div>{data.title}</div>
-        <div>{release}</div>
-        <div> • {genres} • </div>
-        <div>{runtime}</div>
-        <WatchlistBtn movie={movie}/>
-        <div>{data.overview}</div>
-
-        <iframe src={`https://www.youtube.com/embed/${trailer}`} />
-
-        {actors.map((el, index) =>
-            <div key={index}>
-                {el.profile_path ? <img className={styles.poster} src={`${BASE_URL_IMAGE}w500${el.profile_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}
-                <div>{el.name}</div>
-                <div>{el.character ? el.character : 'персонаж відсутній'}</div>
+    
+    return <section className={styles.moviepageWrapper} style={{
+        backgroundImage: data.backdrop_path ? `url(${BASE_URL_IMAGE}original${data.backdrop_path})` : undefined,
+        backgroundColor: data.backdrop_path ? 'rgba(0, 0, 0, 0.8)' : '#0f1219'
+    }}>
+        <Container wide>
+            <div className={styles.flexContainer}>
+                <div className={styles.vicualContainer}>
+                    {data.poster_path ? <img src={`${BASE_URL_IMAGE}w1280${data.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>photo is missing</div>}                    
+                    <div onClick={()=> setIsOpenTrailer(true)} className={styles.trailerPreview}>
+                        {trailer ? <img src={`${BASE_URL_IMAGE}w500${data.backdrop_path}`} className={styles.posterTrailer}/> : <div className={styles.emptyTrailer}>trailer is missing</div>}
+                        {trailer && <div className={styles.startIcon}><FaPlay size={24} style={{ paddingLeft: '5px' }}/></div>}
+                    </div>
+                </div>
+                <div className={styles.detailsContainer}>                    
+                    <h2 className={styles.title}>{title}</h2>                    
+                    <div className={styles.description}>{description}</div>
+                    <WatchlistBtn movie={movie} />
+                    <h3 className={styles.aboutMovie}>About movie</h3>
+                    <div className={styles.info}>
+                        <span className={styles.leftColumn}>Release date</span>                        
+                        <div>{release}</div>
+                        <span className={styles.leftColumn}>Country</span>
+                        <span>{countries}</span>
+                        <span className={styles.leftColumn}>Genre</span>
+                        <span>{genres}</span>
+                        <span className={styles.leftColumn}>Production</span>
+                        <span>{companies}</span>
+                        <span className={styles.leftColumn}>Running time</span>
+                        <span>{runtime}</span>
+                        <span className={styles.leftColumn}>Budget</span>
+                        <span>{budget}</span>
+                        <span className={styles.leftColumn}>Revenue</span>
+                        <span>{revenue}</span>
+                        <span className={styles.leftColumn}>Tagline</span>
+                        <span className={styles.tagline}>{tagline}</span>
+                    </div>
+                </div>
             </div>
-        )}
-
-         {recommendations.map((el, index) =>
-            <div key={index}>
-                {el.poster_path ? <img className={styles.poster} src={`${BASE_URL_IMAGE}w1280${el.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>Фото відсутнє</div>}
-                <div>{el.title}</div>
-            </div>
-        )}
-
-    </div>
+            {actors.length !== 0 && <h4>Cast</h4>}
+            <MediaList items={actors} renderItem={(item) => <ActorCard actor={item} />} />
+            {recommendations.length !== 0 && <h4>Similar movies</h4>}
+            <MediaList items={recommendations} renderItem={(item) => <RecomendationCard recomendation={item} />} />
+        </Container>
+        {isOpenTrailer && trailer && <TrailerModal trailer={trailer} closeTrailer={() => setIsOpenTrailer(false)} />}
+    </section>
 }
 
 export default MoviePage

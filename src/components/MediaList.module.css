@@ -2,10 +2,11 @@
     position: relative;
 }
 
-.cardList {
+.itemsContainer {
+    margin: 0 auto;
+    width: 940px;
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
     gap: 20px;
 
     scrollbar-width: none;

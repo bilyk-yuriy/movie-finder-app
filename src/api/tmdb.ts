@@ -38,7 +38,7 @@ export async function fetchUpcomingMovies(page?: number, genreId?: number[], cou
 
 export async function fetchTopRatedMovies(page?: number, genreId?: number[], country?: string[], rating?: number, releaseDateFrom?: string, releaseDateTo?: string): Promise<MoviePreviewList> {
     const params = getParams(page, genreId, country, rating, releaseDateFrom, releaseDateTo)
-    return makeBodyFn(`${BASE_URl}/discover/movie?sort_by=vote_average.desc&vote_count.gte=500&without_genres=99,10770${params ? `&${params}` : ''}`)
+    return makeBodyFn(`${BASE_URl}/discover/movie?sort_by=vote_average.desc&vote_count.gte=4000&without_genres=99,10770${params ? `&${params}` : ''}`)
 }
 
 export async function fetchMovie(id: number): Promise<MovieDetails> {

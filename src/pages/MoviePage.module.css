@@ -1,17 +1,117 @@
-.wrapper {
-    height: 200px;
+.moviepageWrapper {
+    background-size: 100%;
+    background-attachment: fixed;
+    padding: 40px 0;
+    background-blend-mode: darken;
+    color: white;
 }
 
-.poster {
-    height: 200px;
+.moviepageWrapper h4 {
+    margin: 60px 0 20px 70px;
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+}
+
+.flexContainer {
+    display: flex;
+    gap: 70px;
+}
+
+.vicualContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.trailerPreview {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posterTrailer {
+    width: 100%;
 }
 
 .emptyPoster {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 200px;
-    width: calc(200px / 1.5);
+    align-items: center;
+    height: 300px;
+    width: 450px;
     background-color: black;
     color: white;
+}
+
+.startIcon{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    color: orange;    
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(217, 217, 217, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s;
+}
+
+.trailerPreview {
+    cursor: pointer;
+}
+
+.trailerPreview:hover .startIcon {
+    scale: 1.2;
+}
+
+.emptyTrailer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 296px;
+    background-color: black;
+    color: white;
+}
+
+.detailsContainer {
+    max-width: 700px;
+}
+
+.title {
+    font-size: 60px;
+    margin: 0 0 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    word-spacing: 6px;
+    padding-bottom: 8px;
+}
+
+.description {
+    margin-bottom: 30px;
+    text-wrap: balance;
+}
+
+.aboutMovie {
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.leftColumn {
+    opacity: 0.8;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 40px;
+}
+
+.tagline {
+    color: rgb(227, 227, 227);
 }

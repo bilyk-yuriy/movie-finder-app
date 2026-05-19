@@ -45,9 +45,9 @@ function SearchPage() {
     return <section className={styles.searchpageWrapper}>
         <Container>
             {data.results.length === 0
-                ? <h2>Sorry, i can't find anything in query "{query}"</h2>
+                ? <h2>No results found for: "{query}"</h2>
                 : <> 
-                <h2 className={styles.title}>search: {query}</h2>
+                <h2 className={styles.title}>Search results for: "{query}"</h2>
                 <MovieList movies={movies} />
                 </>}
         </Container>

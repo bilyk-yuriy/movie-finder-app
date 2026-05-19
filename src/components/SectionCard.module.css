@@ -19,12 +19,12 @@
 
 .card:hover h4 {
     color: rgb(255, 85, 0);
-    transform: scale(1.05);
+    scale: 1.05;
 }
 
 .card:hover .poster {
     filter: brightness(0.7);
-    transform: scale(1.05);
+    scale: 1.05;
 }
 
 .cardInfo {

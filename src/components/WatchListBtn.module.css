@@ -34,9 +34,12 @@
 }
 
 .removeBtn {
-    background-color: rgb(154, 26, 6);
+    background-color: rgb(184, 184, 184);
+    height: 40px;
+    width: 180px;
+    font-size: 22px;
 }
 
 .removeBtn:hover {
-    background-color: rgb(111, 18, 4);
+    background-color: rgb(171, 2, 2);
 }

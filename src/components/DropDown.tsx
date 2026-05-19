@@ -30,8 +30,9 @@ function DropDown<T>({ isSingleSelect, input, search, options, selectOption, res
                 onClick={() => { selectOption(el.value, el.poster);
                      isSingleSelect && closeDropDown !== undefined && closeDropDown() }}
                 key={index}>
-                <div className={styles.titleOption}>
-                    {search && el.isHistory ? <FaHistory style={{fontSize: '10px', opacity: '0.7'}}/> : <IoSearch style={{fontSize: '10px'}}/>}
+                <div className={styles.titleOption}>                    
+                    {el.isHistory && <FaHistory style={{fontSize: '10px', opacity: '0.7'}}/>}
+                    {search && !el.isHistory && <IoSearch style={{fontSize: '10px'}}/>}
                     {search && el.poster && <img src={`${BASE_URL_IMAGE}w92${el.poster}`} className={styles.poster}/>}
                     <span>{el.name}</span>
                 </div>

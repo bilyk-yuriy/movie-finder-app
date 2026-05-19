@@ -1,6 +1,7 @@
-.link {
+.info h3 {
     text-decoration: none;
     color: white;
+    margin-bottom: 15px;
 }
 
 .card {
@@ -43,4 +44,8 @@
     width: calc(200px / 1.5 - 2px);
     border: 1px solid white;
     border-radius: 2px;
+}
+
+.info > *:not(:first-child):not(:last-child) {
+    margin-bottom: 5px;
 }

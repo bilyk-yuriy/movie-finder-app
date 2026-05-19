@@ -2,6 +2,7 @@ import type { Countries } from "./types"
 
 export const BASE_URl = 'https://api.themoviedb.org/3'
 export const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/'
+export const BASE_YTUBE_URL = 'https://www.youtube.com/embed/'
 
 export const priorityCountries: Countries = [
     { iso_3166_1: 'US', english_name: 'USA' },

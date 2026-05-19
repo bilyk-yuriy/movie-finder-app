@@ -32,9 +32,9 @@ function WatchListPage() {
     return <section className={styles.watchlistWrapper}>
         <Container>
             {watchlist.length <= 0
-                ? <h2>Your watchlist is empty</h2>
+                ? <h2>Your watchlist is looking a bit lonely</h2>
                 : <>
-                    <h2 className={styles.title}>Your Watchlist</h2>
+                    <h2 className={styles.title}>Your watchlist: {watchlist.length} {watchlist.length === 1 ? 'movie' : 'movies'}</h2>
                     <MovieList movies={watchlist} variant={'remove'} showToast={showToast} />
                 </>}
         </Container>
