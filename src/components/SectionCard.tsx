@@ -13,7 +13,7 @@ function CartItem({ item, upcoming }: CardItemProp) {
     const nextYear = Number(year) < Number(item.release_date.slice(0, 4)) ? item.release_date.slice(0, 4) : ''
     const formatReleaseDate = (dateString: string) => {
         const [year, month, day] = dateString.split('-')
-        const date = new Date(Number(year), Number(month), Number(day))
+        const date = new Date(Number(year), Number(month) - 1, Number(day))
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric'})
     }
     const coming = `Coming ${nextYear} ${formatReleaseDate(item.release_date)}`
@@ -27,7 +27,7 @@ function CartItem({ item, upcoming }: CardItemProp) {
                 <div className={styles.description}>
                     {!upcoming && <span>{year}</span>}
                     {upcoming && <span>{coming}</span>}
-                    {item.vote_average > 0 && item.vote_count >= 100 && <span>{rating}</span>}
+                    {item.vote_average > 0 && item.vote_count >= 30 && <span>{rating}</span>}
                 </div>
             </div>
         </div>

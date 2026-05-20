@@ -15,7 +15,7 @@ function MainMovie() {
 
     const { data: trendingMovie, isLoading: isTrendingLoading, isError: isTrendingError } = useQuery({
         queryKey: ['trendingMovie'],
-        queryFn: fetchTrendingMovies,
+        queryFn: ()=> fetchTrendingMovies('week'),
         staleTime: 1000 * 60 * 60
     })
 

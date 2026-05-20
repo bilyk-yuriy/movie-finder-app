@@ -2,20 +2,24 @@ import { useQuery } from '@tanstack/react-query'
 import type { MoviePreviewList } from '../types'
 import Container from './Container'
 import SectionList from './SectionList'
+import TimeToggle from './TimeToggle'
 import styles from './MovieSection.module.css'
 
 
 type MovieSectionProp = {
-    queryKey: string,
+    queryKey: string[],
     queryFn: () => Promise<MoviePreviewList>,
     title: string,
     upcoming?: boolean
+    trending?: boolean
+    timeWindow?: 'week' | 'day'
+    toggleTimeWindow?: () => void
 }
 
-function MovieSection({queryKey, queryFn, title, upcoming}: MovieSectionProp) {
-
+function MovieSection({ queryKey, queryFn, title, upcoming, trending, timeWindow, toggleTimeWindow }: MovieSectionProp) {
+ 
     const { data, isLoading, isError } = useQuery({
-        queryKey: [queryKey],
+        queryKey: queryKey,
         queryFn: queryFn
     })
 
@@ -24,8 +28,11 @@ function MovieSection({queryKey, queryFn, title, upcoming}: MovieSectionProp) {
 
     return <section className={styles.moviesectionWrapper}>
         <Container wide>
-            <h2 className={styles.title} >{title}</h2>
-            <SectionList movies={data?.results ?? []} upcoming={upcoming}/>
+            <div className={styles.titleWrapper}>
+                <h2 className={styles.title}>{title}</h2>
+                {trending && timeWindow && toggleTimeWindow && <TimeToggle timeWindow={timeWindow} toggleTimeWindow={toggleTimeWindow}/>}
+            </div>
+            <SectionList movies={data?.results ?? []} upcoming={upcoming} />
         </Container>
     </section>
 }

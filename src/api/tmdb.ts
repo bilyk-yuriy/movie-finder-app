@@ -20,8 +20,8 @@ function getParams(page?: number, genreId?: number[], country?: string[], rating
     return params.toString()
 }
 
-export async function fetchTrendingMovies(): Promise<MoviePreviewList> {
-    return makeBodyFn(`${BASE_URl}/trending/movie/week`)
+export async function fetchTrendingMovies(timeWindow: 'week' | 'day'): Promise<MoviePreviewList> {
+    return makeBodyFn(`${BASE_URl}/trending/movie/${timeWindow}`)
 }
 
 export async function fetchPopularMovies(page?: number, genreId?: number[], country?: string[], rating?: number, releaseDateFrom?: string, releaseDateTo?: string): Promise<MoviePreviewList> {
