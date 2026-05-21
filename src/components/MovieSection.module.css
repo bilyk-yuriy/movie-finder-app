@@ -4,12 +4,13 @@
     height: 500px;
     display: flex;
     align-items: center;
+    overflow: visible;
 }
 
 .titleWrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .title {
@@ -17,5 +18,26 @@
     font-weight: 900;
     font-size: 30px;
     color: white;
-    margin-left: 20px;
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.dots span {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
 }

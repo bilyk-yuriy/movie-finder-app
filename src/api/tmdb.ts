@@ -1,4 +1,4 @@
-import type { MoviePreviewList, MovieDetails, Movie, Genres, Countries } from '../types'
+import type { MoviePreviewList, MovieDetails, Genres, Countries } from '../types'
 import { BASE_URl } from '../constants'
 
 async function makeBodyFn<T>(url: string): Promise<T> {
@@ -43,10 +43,6 @@ export async function fetchTopRatedMovies(page?: number, genreId?: number[], cou
 
 export async function fetchMovie(id: number): Promise<MovieDetails> {
     return makeBodyFn(`${BASE_URl}/movie/${id}?append_to_response=recommendations,credits,videos`)
-}
-
-export async function fetchFullMovie(movieId: number): Promise<Movie> {
-    return makeBodyFn(`${BASE_URl}/movie/${movieId}`)
 }
 
 export async function fetchTitleMovie(userText: string): Promise<string> {

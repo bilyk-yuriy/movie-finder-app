@@ -10,9 +10,10 @@ type WatchListProp = {
     movie: MovieWithGenres
     variant?: 'default' | 'remove'
     showToast?: (movie: MovieWithGenres)=> void
+    disabled?: boolean
 }
 
-function WatchlistBtn({movie, variant, showToast}: WatchListProp) {
+function WatchlistBtn({movie, variant, showToast, disabled}: WatchListProp) {
 
     const watchlistContext = useContext(WatchListContext)
     if (!watchlistContext) return null
@@ -28,8 +29,8 @@ function WatchlistBtn({movie, variant, showToast}: WatchListProp) {
 
     return <>
         {found
-        ? <button onClick={()=> toggleWatchList(movie)} className={styles.addedBtn}><MdBookmarkAdded />Added</button>
-        : <button onClick={()=> toggleWatchList(movie)} className={styles.addBtn}><MdBookmarkAdd />Add to Watchlist</button>}
+        ? <button disabled={disabled} onClick={()=> toggleWatchList(movie)} className={styles.addedBtn}><MdBookmarkAdded />Added</button>
+        : <button disabled={disabled} onClick={()=> toggleWatchList(movie)} className={styles.addBtn}><MdBookmarkAdd />Add to Watchlist</button>}
     </>
 }
 

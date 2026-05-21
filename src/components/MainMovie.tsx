@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { FaBookmark } from 'react-icons/fa6';
 import { BsBookmarkHeartFill } from "react-icons/bs";
-import { fetchTrendingMovies, fetchFullMovie } from "../api/tmdb"
+import { fetchTrendingMovies, fetchMovie } from "../api/tmdb"
 import Container from './Container'
 import WatchlistBtn from './WatchListBtn';
 import { WatchListContext } from '../contexts/WatchListContext';
@@ -29,7 +29,7 @@ function MainMovie() {
         queryKey: ['mainMovie'],
         queryFn: () => {
             if (selectedMovieId === undefined) throw new Error('No movie id')
-            return fetchFullMovie(selectedMovieId)
+            return fetchMovie(selectedMovieId)
         }
     })
 

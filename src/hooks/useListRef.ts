@@ -35,7 +35,7 @@ function useListRef<T>(items: T[], quantityScroll: number) {
     
             if (!listRef.current) return
     
-            const card = listRef.current?.children[0] as HTMLElement
+            const card = listRef.current?.children[1] as HTMLElement
             const cardWidth = card.clientWidth + 20
     
             const remainder = listRef.current.scrollLeft % cardWidth
