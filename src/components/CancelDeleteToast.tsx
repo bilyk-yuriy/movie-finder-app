@@ -28,10 +28,13 @@ function CancelDeleteToast({ movie, restoreMovie, hideToast }: CancelDeleteToast
 
     return <>
         <div className={styles.cancelToastContainer}>
-            <div className={styles.title}>{movie.title}</div>
-            <div>was deleted from watchlist</div>
-            <button onClick={() => { hideToast(); restoreMovie(movie) }}>cancel</button>
-            <div>({seconds})</div>
+            <svg key={movie.id} className={styles.ring} viewBox="0 0 34 34">
+                <circle className={styles.ringBg} cx="17" cy="17" r="14" />
+                <circle className={styles.ringFill} cx="17" cy="17" r="14" />
+            </svg>
+            <div className={styles.seconds}>{seconds}</div>
+            <span className={styles.title}>{movie.title}: was deleted from watchlist</span>
+            <button className={styles.cancelBtn} onClick={() => { hideToast(); restoreMovie(movie) }}>Cancel</button>
         </div>
     </>
 }

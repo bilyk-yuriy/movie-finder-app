@@ -35,12 +35,11 @@
     cursor: pointer;
 }
 
-.leftBtn:hover {
-    left: -40px;
-}
-
-.rightBtn:hover {
-    right: -40px;
+.leftBtn:hover,
+.rightBtn:hover,
+.leftBtnSmall:hover,
+.rightBtnSmall:hover {
+    scale: 1.05;
 }
 
 .leftBtnSmall,
@@ -58,12 +57,4 @@
 .rightBtnSmall {
     right: 45px;
     padding-left: 8px;
-}
-
-.leftBtnSmall:hover {
-    left: 40px;
-}
-
-.rightBtnSmall:hover {
-    right: 40px;
 }

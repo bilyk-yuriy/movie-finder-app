@@ -1,9 +1,61 @@
 .cancelToastContainer {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    background-color: rgb(32, 32, 32);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.seconds {
+    font-size: 22px;
 }
 
 .title {
+    font-size: 16px;
+}
+
+.cancelBtn {
     font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: rgb(111, 185, 237);
+}
+
+.ring {
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    transform: rotate(-90deg);
+    flex-shrink: 0;
+}
+
+.ringBg {
+    fill: none;
+    stroke: #ffffff33;
+    stroke-width: 3;
+}
+
+.ringFill {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 88;
+    stroke-dashoffset: 0;
+    animation: drain 5s linear forwards;
+}
+
+@keyframes drain {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: 88;
+    }
 }

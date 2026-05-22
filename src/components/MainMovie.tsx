@@ -11,54 +11,59 @@ import { BASE_URL_IMAGE } from '../constants';
 import styles from './MainMovie.module.css'
 import type { MovieWithGenres } from '../types';
 
-function MainMovie() {
 
+let cachedIndex: number | null = null
+
+function MainMovie() {
+    
     const { data: trendingMovie, isLoading: isTrendingLoading, isError: isTrendingError } = useQuery({
         queryKey: ['trendingMovie'],
-        queryFn: ()=> fetchTrendingMovies('week'),
-        staleTime: 1000 * 60 * 60
+        queryFn: () => fetchTrendingMovies('week'),
+        staleTime: Infinity,
     })
 
-    const [randomMovie, setRandomMovie] = useState<number | null>(null)
+    const [randomIndex, setRandomIndex] = useState<number | null>(cachedIndex)
 
-    const selectedMovieId = randomMovie !== null && trendingMovie
-        ? trendingMovie.results[randomMovie].id
+    const selectedMovieId = randomIndex !== null && trendingMovie
+        ? trendingMovie.results[randomIndex].id
         : undefined
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['mainMovie'],
+        queryKey: ['mainMovie', selectedMovieId],
         queryFn: () => {
             if (selectedMovieId === undefined) throw new Error('No movie id')
             return fetchMovie(selectedMovieId)
-        }
+        },
+        enabled: selectedMovieId !== undefined,
+        staleTime: Infinity,
     })
+
+    useEffect(()=> {
+        if (!trendingMovie || randomIndex !== null) return
+        const index = Math.floor(Math.random() * trendingMovie.results.length)
+        cachedIndex = index
+        setRandomIndex(index)
+    },[trendingMovie])
 
     const watchlistContext = useContext(WatchListContext)
     if (!watchlistContext) return null
     const { watchlist, toggleWatchList } = watchlistContext
 
-    useEffect(() => {
-        if (randomMovie !== null) return
-        if (!trendingMovie) return
-        const randomIndex = Math.floor(Math.random() * trendingMovie.results.length)
-        setRandomMovie(randomIndex)
-    }, [trendingMovie])
-
-    if (isTrendingLoading || isLoading) return <div>Завантажується...</div>
+    if (isTrendingLoading || isLoading || randomIndex === null) return <div>Завантажується...</div>
     if (isTrendingError || isError || !data) return <div>Щось пішло не так...</div>
 
     const found = watchlist.find(el => el.id === data.id)
     const release = data.release_date.slice(0, 4)
     const hours = Math.floor(data.runtime / 60)
     const minutes = data.runtime % 60
-    const textRunTime = `${hours}h ${minutes}m`
+    const textRunTime = (minutes === 0 && hours === 0) ? undefined : hours === 0 ? `${minutes}m` : `${hours}h ${minutes}m`
     const genre = data.genres.map(el => el.name).join(', ')
     const rating = data.vote_average.toFixed(1)
     const description = data.overview.length > 100
         ? data.overview.substring(0, data.overview.lastIndexOf(' ', 100)) + '...'
         : data.overview
 
-    const movie: MovieWithGenres = {...data, genres: data.genres.map(el=> el.name)}
+    const movie: MovieWithGenres = { ...data, genres: data.genres.map(el => el.name) }
 
     return <section className={styles.mainmovieWrapper} style={{ backgroundImage: `url(${BASE_URL_IMAGE}w1280${data.backdrop_path})` }}>
         <Container>
