@@ -8,6 +8,7 @@ import MoviePage from "./pages/MoviePage"
 import ActorPage from "./pages/ActorPage"
 import Footer from "./components/Footer"
 import { WatchListProvider } from "./contexts/WatchListContext"
+import ScrollToTop from "./components/ScrollToTop"
 import './App.css'
 
 
@@ -16,6 +17,7 @@ function App() {
   return <BrowserRouter>
     <WatchListProvider>
       <div className='layout'>
+        <ScrollToTop/>
         <NavBar></NavBar>
         <main>
           <Routes>
