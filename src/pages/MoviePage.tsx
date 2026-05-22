@@ -61,8 +61,8 @@ function MoviePage() {
             <div className={styles.flexContainer}>
                 <div className={styles.vicualContainer}>
                     {data.poster_path ? <img src={`${BASE_URL_IMAGE}w1280${data.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>photo is missing</div>}                    
-                    <div onClick={()=> setIsOpenTrailer(true)} className={styles.trailerPreview}>
-                        {trailer ? <img src={`${BASE_URL_IMAGE}w500${data.backdrop_path}`} className={styles.posterTrailer}/> : <div className={styles.emptyTrailer}>trailer is missing</div>}
+                    <div className={styles.trailerPreview}>
+                        {trailer ? <div onClick={()=> setIsOpenTrailer(true)} className={styles.trailer}><img src={`${BASE_URL_IMAGE}w500${data.backdrop_path}`} className={styles.posterTrailer}/></div> : <div className={styles.emptyTrailer}>trailer is missing</div>}
                         {trailer && <div className={styles.startIcon}><FaPlay size={24} style={{ paddingLeft: '5px' }}/></div>}
                     </div>
                 </div>

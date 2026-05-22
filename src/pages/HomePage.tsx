@@ -20,10 +20,10 @@ function HomePage() {
 
     return <>
         <MainMovie />
-        <MovieSection queryKey={['trendingMovie', timeWindow]} queryFn={() => fetchTrendingMovies(timeWindow)} title={'Trending this'} trending timeWindow={timeWindow} toggleTimeWindow={toggleTimeWindow} />
-        <MovieSection queryKey={['popularMovie']} queryFn={() => fetchPopularMovies()} title={'Popular'} />
-        <MovieSection queryKey={['upcomingMovie']} queryFn={() => fetchUpcomingMovies()} title={'Upcoming'} upcoming />
-        <MovieSection queryKey={['topRatedMovie']} queryFn={() => fetchTopRatedMovies()} title={'Top Rated'} />
+        <MovieSection queryKey={['trendingMovie', timeWindow]} queryFn={() => fetchTrendingMovies(timeWindow)} title={'Trending this'} category={'trending'} timeWindow={timeWindow} toggleTimeWindow={toggleTimeWindow} />
+        <MovieSection queryKey={['popularMovie']} queryFn={() => fetchPopularMovies()} title={'Popular'} category={'popular'} />
+        <MovieSection queryKey={['upcomingMovie']} queryFn={() => fetchUpcomingMovies()} title={'Upcoming'} category={'upcoming'} />
+        <MovieSection queryKey={['topRatedMovie']} queryFn={() => fetchTopRatedMovies()} title={'Top Rated'} category={'top'} />
     </>
 }
 

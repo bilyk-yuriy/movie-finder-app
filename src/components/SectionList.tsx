@@ -1,50 +1,51 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { MoviePreview, MovieWithGenres } from "../types"
 import SectionCard from "./SectionCard"
 import ScrollBtn from './ScrollBtn';
 import useListRef from '../hooks/useListRef';
-import WatchlistBtn from "./WatchListBtn";
 import useFetchGenres from "../hooks/useFetchGenres";
-import { BASE_YTUBE_URL } from '../constants'
+import TrailerTrending from "./TrailerTrending";
+import ShowAllBtn from "./ShowAllBtn";
 import styles from './SectionList.module.css'
 
 type CardListProp = {
     movies: MoviePreview[]
-    upcoming?: boolean
-    trending?: boolean
+    category: 'trending' | 'popular' | 'upcoming' | 'top'
     trailer?: string | undefined
     timeWindow?: 'week' | 'day'
 }
 
-function CardList({ movies, upcoming, trending, trailer, timeWindow }: CardListProp) {
+function CardList({ movies, category, trailer, timeWindow }: CardListProp) {
 
     const { listRef, atStart, atEnd, scrollList } = useListRef(movies, 4)
 
     const { data: genresData, isLoading } = useFetchGenres()
 
-    const movie: MovieWithGenres = { ...movies[0], genres: genresData?.genres.filter(g => movies[0].genre_ids.includes(g.id)).map(g=> g.name) ?? []}
+    const navigate = useNavigate()
 
-    return <>
-        <div className={styles.wrapper}>
-            {movies.length > 5 && !atStart && <ScrollBtn type={'left'} scrollList={() => scrollList('left')} />}
-            {movies.length > 5 && !atEnd && <ScrollBtn type={'right'} scrollList={() => scrollList('right')} />}
-            <div className={styles.cardList} ref={listRef}>
-                {trending && trailer && <div className={styles.trailerContainer}>
-                    <Link to={`/movie/${movie.id}`}><div className={styles.trailer}>
-                        <iframe src={`${BASE_YTUBE_URL}${trailer}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=${trailer}`} />
-                    </div></Link>
-                    <div className={styles.info}>
-                        <span>#1 THIS {timeWindow?.toUpperCase()}</span>
-                        <WatchlistBtn movie={movie} disabled={isLoading}/>
-                        <Link to={`/movie/${movie.id}`}><span className={styles.showMore}>SHOW MORE</span></Link>
-                    </div>
-                </div>}
-                {movies.map(el =>
-                    <SectionCard key={el.id} item={el} upcoming={upcoming} />
-                )}
-            </div>
+    const routes: Record<string, string> = {
+        popular: 'all-movie?category=popular&page=1',
+        upcoming: 'all-movie?category=upcoming&page=1',
+        top: 'all-movie?category=top500&page=1',
+    }
+
+    function handleNavigate() {
+        if (routes[category]) navigate(routes[category])
+    }
+ 
+    const movie: MovieWithGenres = { ...movies[0], genres: genresData?.genres.filter(g => movies[0].genre_ids.includes(g.id)).map(g => g.name) ?? [] }
+
+    return <div className={styles.wrapper}>
+        {movies.length > 5 && !atStart && <ScrollBtn type={'left'} scrollList={() => scrollList('left')} />}
+        {movies.length > 5 && !atEnd && <ScrollBtn type={'right'} scrollList={() => scrollList('right')} />}
+        <div className={styles.cardList} ref={listRef}>
+            {category === 'trending' && trailer && <TrailerTrending movie={movie} trailer={trailer} timeWindow={timeWindow} isLoading={isLoading}/>}
+            {movies.map(el =>
+                <SectionCard key={el.id} item={el} upcoming={category === 'upcoming'} />
+            )}
+            {!trailer && <ShowAllBtn handleNavigate={handleNavigate}/>}
         </div>
-    </>
+    </div>
 }
 
 export default CardList

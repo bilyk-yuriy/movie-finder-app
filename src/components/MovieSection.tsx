@@ -11,13 +11,12 @@ type MovieSectionProp = {
     queryKey: string[],
     queryFn: () => Promise<MoviePreviewList>,
     title: string,
-    upcoming?: boolean
-    trending?: boolean
+    category: 'trending' | 'popular' | 'upcoming' | 'top'
     timeWindow?: 'week' | 'day'
     toggleTimeWindow?: () => void
 }
 
-function MovieSection({ queryKey, queryFn, title, upcoming, trending, timeWindow, toggleTimeWindow }: MovieSectionProp) {
+function MovieSection({ queryKey, queryFn, title, category, timeWindow, toggleTimeWindow }: MovieSectionProp) {
 
     const { data, isLoading, isError, isPlaceholderData } = useQuery({
         queryKey: queryKey,
@@ -31,7 +30,7 @@ function MovieSection({ queryKey, queryFn, title, upcoming, trending, timeWindow
             if (!data) throw new Error('no data')
             return fetchMovie(data?.results[0].id)
         },
-        enabled: !!trending && !!data
+        enabled: !!(category === 'trending') && !!data
     })
 
     const trailer = dataFirstMovie?.videos.results.find(el => el.official === true && el.type === 'Trailer')?.key
@@ -43,14 +42,14 @@ function MovieSection({ queryKey, queryFn, title, upcoming, trending, timeWindow
         <Container wide>
             <div className={styles.titleWrapper}>
                 <h2 className={styles.title}>{title}</h2>
-                {trending && timeWindow && toggleTimeWindow && <TimeToggle timeWindow={timeWindow} toggleTimeWindow={toggleTimeWindow} />}
+                {category === 'trending' && timeWindow && toggleTimeWindow && <TimeToggle timeWindow={timeWindow} toggleTimeWindow={toggleTimeWindow} />}
                 {isPlaceholderData && <div className={styles.dots}>
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>}
             </div>
-            <SectionList movies={data?.results ?? []} upcoming={upcoming} trending={trending} trailer={trailer} timeWindow={timeWindow}/>
+            {(category !== 'trending' || trailer) &&<SectionList movies={data?.results ?? []} category={category} trailer={trailer} timeWindow={timeWindow}/>}
         </Container>
     </section>
 }

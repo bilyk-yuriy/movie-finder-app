@@ -60,12 +60,12 @@
     transition: all 0.2s;
 }
 
-.trailerPreview {
-    cursor: pointer;
-}
-
 .trailerPreview:hover .startIcon {
     scale: 1.2;
+}
+
+.trailer {
+    cursor: pointer;
 }
 
 .emptyTrailer {

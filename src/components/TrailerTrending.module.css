@@ -1,0 +1,55 @@
+.trailerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.trailer {
+    cursor: pointer;
+    height: 300px;
+    min-width: 640px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.trailer:hover {
+    scale: 1.02;
+}
+
+.trailer iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: calc(300px * 1.45);
+    width: calc(300px * (16 / 9) * 1.45);
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+}
+
+.info {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.info span {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.info a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.info a:hover {
+    scale: 1.02;
+    opacity: 0.8;
+}
