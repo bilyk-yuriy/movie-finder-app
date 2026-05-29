@@ -6,9 +6,11 @@ import { fetchMovie } from "../api/tmdb"
 import type { MovieWithGenres } from "../types"
 import WatchlistBtn from '../components/WatchListBtn'
 import Container from "../components/Container"
-import MediaList from "../components/MediaList"
-import ActorCard from "../components/ActorCard"
-import RecomendationCard from "../components/RecomendationCard"
+import MediaList from "../components/MoviePageComponents/MediaList/MediaList";
+import ActorCard from "../components/MoviePageComponents/ActorCard/ActorCard";
+import SkeletonMoviePage from "../components/MoviePageComponents/SkeletonMoviePage/SkeletonMoviePage";
+import RecomendationCard from "../components/MoviePageComponents/RecomendationCard/RecomendationCard";
+import ErrorFallback from "../components/ErrorFallback";
 import TrailerModal from "../components/TrailerModal"
 import { BASE_URL_IMAGE } from "../constants"
 import styles from './MoviePage.module.css'
@@ -20,7 +22,8 @@ function MoviePage() {
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['movie', id],
-        queryFn: () => fetchMovie(Number(id))
+        queryFn: () => fetchMovie(Number(id)),
+        staleTime: Infinity
     })
 
     const [isOpenTrailer, setIsOpenTrailer] = useState(false)
@@ -28,9 +31,9 @@ function MoviePage() {
     useEffect(()=> {
         document.body.style.overflow = isOpenTrailer ? 'hidden' : ''
     }, [isOpenTrailer])
-
-    if (isLoading) return <div>Завантажується...</div>
-    if (isError || !data) return <div>Щось сталось не так...</div>
+    
+    if (isLoading) return <SkeletonMoviePage />
+    if (isError || !data || !data.credits || !data.recommendations || !data.videos) return <ErrorFallback />
 
     const movie: MovieWithGenres = { ...data, genres: data.genres.map(el => el.name) }
 
@@ -58,12 +61,12 @@ function MoviePage() {
         backgroundColor: data.backdrop_path ? 'rgba(0, 0, 0, 0.8)' : '#0f1219'
     }}>
         <Container wide>
-            <div className={styles.flexContainer}>
+            <div className={styles.container}>
                 <div className={styles.vicualContainer}>
                     {data.poster_path ? <img src={`${BASE_URL_IMAGE}w1280${data.poster_path}`} alt="" /> : <div className={styles.emptyPoster}>photo is missing</div>}                    
                     <div className={styles.trailerPreview}>
                         {trailer ? <div onClick={()=> setIsOpenTrailer(true)} className={styles.trailer}><img src={`${BASE_URL_IMAGE}w500${data.backdrop_path}`} className={styles.posterTrailer}/></div> : <div className={styles.emptyTrailer}>trailer is missing</div>}
-                        {trailer && <div className={styles.startIcon}><FaPlay size={24} style={{ paddingLeft: '5px' }}/></div>}
+                        {trailer && <div onClick={()=> setIsOpenTrailer(true)} className={styles.startIcon}><FaPlay size={24} style={{ paddingLeft: '5px' }}/></div>}
                     </div>
                 </div>
                 <div className={styles.detailsContainer}>                    
