@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import type { MoviePreview, MovieWithGenres } from "../types"
+import type { MoviePreview, MovieWithGenres } from "../../../types"
 import SectionCard from "./SectionCard"
-import ScrollBtn from './ScrollBtn';
-import useListRef from '../hooks/useListRef';
-import useFetchGenres from "../hooks/useFetchGenres";
+import ScrollBtn from '../../ScrollBtn';
+import useListRef from '../../../hooks/useListRef';
+import useFetchGenres from "../../../hooks/useFetchGenres";
 import TrailerTrending from "./TrailerTrending";
 import ShowAllBtn from "./ShowAllBtn";
 import styles from './SectionList.module.css'

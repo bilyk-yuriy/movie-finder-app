@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import type { Actor } from '../types'
-import { BASE_URL_IMAGE } from '../constants'
+import type { Actor } from '../../../types'
+import { BASE_URL_IMAGE } from '../../../constants'
 import styles from './ActorCard.module.css'
 
 type ActorCardProp = {

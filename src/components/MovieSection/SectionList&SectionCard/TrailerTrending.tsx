@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import WatchlistBtn from './WatchListBtn'
-import { BASE_YTUBE_URL } from '../constants'
-import type { MovieWithGenres } from '../types'
+import WatchlistBtn from '../../WatchListBtn'
+import { BASE_YTUBE_URL } from '../../../constants'
+import type { MovieWithGenres } from '../../../types'
 import styles from './TrailerTrending.module.css'
 
 type TrailerTrendingProp = {

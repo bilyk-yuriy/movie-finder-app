@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    width: 940px;
+    margin: 0 auto;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.card {
+    width: 140px;
+    flex-shrink: 0;
+}
+
+.poster {
+    height: 210px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.name {
+    height: 19px;
+    margin-bottom: 5px;
+}
+
+.character {
+    height: 19px;
+}

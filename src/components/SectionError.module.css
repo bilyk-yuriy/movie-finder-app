@@ -1,0 +1,39 @@
+.errorWrapper {
+    background-color: hsl(222, 25%, 8%);
+}
+
+.errorContent {
+    height: 474px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+    border: 1px dashed rgb(255, 255, 255, 0.4);
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+.title {
+    opacity: 0.8;
+    font-size: 25px;
+}
+
+.againBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 8px 25px;
+    background-color: transparent;
+}
+
+.text {
+    cursor: pointer;
+    color: white;
+    margin-left: 5px;
+    font-size: 25px;
+}

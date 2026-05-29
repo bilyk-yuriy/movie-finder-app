@@ -1,0 +1,23 @@
+.wrapper {
+    min-height: 406px;
+    padding: 60px 0;
+    background-color: hsl(222, 25%, 8%);
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+}
+
+.text {
+    height: 30px;
+    width: 190px;
+    border-radius: 10px;
+}
+
+.title {
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}

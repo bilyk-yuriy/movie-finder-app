@@ -1,0 +1,58 @@
+.loadBorder {
+    height: 2px;
+    width: auto;
+    margin-left: 30px;
+}
+
+.loadCard {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.loadNumber {
+    width: 35px;
+}
+
+.loadPoster {
+    height: 200px;
+    width: 133px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.loadTitleMovie {
+    height: 22px;
+    width: 200px;
+    margin-bottom: 15px;
+}
+
+.loadYear {
+    height: 19px;
+    width: 30px;
+    margin-bottom: 5px;
+}
+
+.loadGenres {
+    height: 19px;
+    width: 50px;
+    margin-bottom: 5px;
+}
+
+.loadRating {
+    height: 19px;
+    width: 20px;
+    margin-bottom: 5px;
+}
+
+.loadDescription {
+    height: 19px;
+    width: 600px;
+    margin-bottom: 5px;
+}
+
+.loadAddBtn {
+    height: 40px;
+    width: 240px;
+    border-radius: 20px;
+}

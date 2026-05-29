@@ -1,0 +1,30 @@
+.filtersContainer {
+    padding: 70px 0 0 30px;
+    border-right: 1px solid rgb(38, 37, 37);
+}
+
+.filter {
+    margin-bottom: 40px;
+}
+
+.arrowText {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.arrow {
+    height: 25px;
+    width: 25px;
+}
+
+.text {
+    height: 25px;
+    width: 95px;
+}
+
+.selectBtn {
+    height: 35px;
+    width: 170px;
+    border-radius: 5px;
+}

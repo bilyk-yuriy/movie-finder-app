@@ -1,18 +1,18 @@
-import FiltersPanel from '../components/FiltersPanel'
-import MoviesPanel from '../components/MoviesPanel'
-import useFetchGenres from '../hooks/useFetchGenres'
+import { useState } from 'react'
+import FiltersPanel from '../components/AllMoviePageComponents/FiltersPanel/FiltersPanel'
+import MoviesPanel from '../components/AllMoviePageComponents/MoviesPanel/MoviesPanel'
+import ErrorFallback from '../components/ErrorFallback'
 import styles from './AllMoviePage.module.css'
 
 function AllMoviePage() {
 
-    const { data: genresData, isLoading, isError } = useFetchGenres()
+    const [hasError, setHasError] = useState(false)
 
-    if (isLoading) return <div>Завантажується...</div>
-    if (isError || !genresData) return <div>Щось пішло не так</div>
+    if (hasError) return <ErrorFallback />
 
     return <section className={styles.allmovieWrapper}>
-        <FiltersPanel genresData={genresData}/>
-        <MoviesPanel genresData={genresData}/>
+        <FiltersPanel/>
+        <MoviesPanel onError={()=> setHasError(true)}/>
     </section>
 }
 

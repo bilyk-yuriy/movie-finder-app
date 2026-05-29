@@ -1,0 +1,172 @@
+.wrapper {
+    background-color: hsl(222, 25%, 8%);
+    padding: 40px 0;
+}
+
+.container {
+    display: flex;
+    gap: 70px;
+}
+
+.visualContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.poster {
+    height: 450px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.trailer {
+    height: 169px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.detailsContainer {
+
+}
+
+.title {
+    height: 65px;
+    width: 400px;
+    margin-bottom: 28px;
+}
+
+.descriptionStart {
+    height: 20px;
+    width: 550px;
+    margin-bottom: 5px;
+}
+
+.descriptionEnd {
+    height: 20px;
+    width: 600px;
+    margin-bottom: 30px;
+}
+
+.addBtn {
+    height: 40px;
+    width: 240px;
+    border-radius: 20px;
+}
+
+.aboutMovie {
+    height: 36px;
+    width: 180px;
+    margin: 30px 0;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 40px;
+}
+
+.leftRelease,
+.release,
+.leftCountries,
+.countries,
+.leftGenre,
+.genres,
+.leftCompanies,
+.companies,
+.leftRuntime,
+.runtime,
+.leftRating,
+.rating,
+.leftBudget,
+.budget,
+.leftRevenue,
+.revenue,
+.leftTagline,
+.tagline {
+    height: 19px;
+}
+
+.leftRelease {
+    width: 85px;
+}
+
+.release {
+    width: 80px;
+}
+
+.leftCountries {
+    width: 50px;
+}
+
+.countries {
+    width: 270px;
+}
+
+.leftGenre {
+    width: 45px;
+}
+
+.genres {
+    width: 200px;
+}
+
+.leftCompanies {
+    width: 70px;
+}
+
+.companies {
+    width: 500px;
+}
+
+.leftRuntime {
+    width: 90px;
+}
+
+.runtime {
+    width: 50px;
+}
+
+.leftRating {
+    width: 45px;
+}
+
+.rating {
+    width: 40px;
+}
+
+.leftBudget {
+    width: 48px;
+}
+
+.budget {
+    width: 70px;
+}
+
+.leftRevenue {
+    width: 55px;
+}
+
+.revenue {
+    width: 90px;
+}
+
+.leftTagline {
+    width: 48px;
+}
+
+.tagline {
+    width: 210px;
+}
+
+.cast {
+    height: 50px;
+    width: 70px;
+    margin: 60px 0 20px 70px;
+}
+
+.similar {
+    height: 40px;
+    width: 210px;
+    margin: 100px 0 20px 70px;
+}

@@ -1,0 +1,29 @@
+.wrapper {
+    padding-top: 230px;
+    justify-items: center;
+    border-right: 1px solid rgb(38, 37, 37);
+}
+
+.title {
+    opacity: 0.8;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.againBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 6px 20px;
+    background-color: transparent;
+}
+
+.text {
+    cursor: pointer;
+    color: white;
+    margin-left: 5px;
+    font-size: 20px;
+}

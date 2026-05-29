@@ -1,0 +1,17 @@
+.againBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 8px 25px;
+    background-color: transparent;
+}
+
+.text {
+    cursor: pointer;
+    color: white;
+    margin-left: 5px;
+    font-size: 25px;
+}

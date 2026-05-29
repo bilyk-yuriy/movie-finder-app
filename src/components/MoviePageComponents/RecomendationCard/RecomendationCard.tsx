@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import type { Movie } from '../types'
-import { BASE_URL_IMAGE } from '../constants'
+import type { Movie } from '../../../types'
+import { BASE_URL_IMAGE } from '../../../constants'
 import styles from './RecomendationCard.module.css'
 
 type RecomendationCardProp = {

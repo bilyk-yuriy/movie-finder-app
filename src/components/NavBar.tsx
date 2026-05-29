@@ -50,7 +50,7 @@ function NavBar() {
     inputRef.current?.blur()
 }
 
-const historyOptions = history.filter(el => el.value.toLowerCase().includes(inputValue.toLowerCase())).map(item => ({ value: item.value, name: item.name, isHistory: true, poster: item.poster }))
+const historyOptions = history.filter(el => el.value?.toLowerCase().includes(inputValue.toLowerCase())).map(item => ({ value: item.value, name: item.name, isHistory: true, poster: item.poster }))
 const suggestionsOptions = suggestions?.map(el => ({ value: el.title, name: el.title, poster: el.poster }))
 const options = [...suggestionsOptions ?? [], ...historyOptions]
 

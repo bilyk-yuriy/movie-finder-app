@@ -5,3 +5,23 @@
 body {
     margin: 0;
 }
+
+@keyframes shimmerAnimation {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.global-shimmer {
+  background: linear-gradient(
+    90deg,
+    #1c2029 25%, 
+    #2a303d 50%, 
+    #1c2029 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmerAnimation 3.6s infinite linear;
+}

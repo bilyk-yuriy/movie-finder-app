@@ -31,10 +31,6 @@
     transition: all 0.3s;
 }
 
-.card:hover .info {
-    scale: 1.05;
-}
-
 .name {
     transition: all 0.3s;
 }

@@ -11,7 +11,7 @@ import ActorCard from "../components/MoviePageComponents/ActorCard/ActorCard";
 import SkeletonMoviePage from "../components/MoviePageComponents/SkeletonMoviePage/SkeletonMoviePage";
 import RecomendationCard from "../components/MoviePageComponents/RecomendationCard/RecomendationCard";
 import ErrorFallback from "../components/ErrorFallback";
-import TrailerModal from "../components/TrailerModal"
+import TrailerModal from "../components/MoviePageComponents/TrailerModal/TrailerModal";
 import { BASE_URL_IMAGE } from "../constants"
 import styles from './MoviePage.module.css'
 

@@ -1,5 +1,5 @@
 import { MdClose } from "react-icons/md";
-import { BASE_YTUBE_URL } from '../constants'
+import { BASE_YTUBE_URL } from "../../../constants";
 import styles from './TrailerModal.module.css'
 
 type TrailerModalProp = {

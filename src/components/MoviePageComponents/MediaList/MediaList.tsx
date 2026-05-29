@@ -1,5 +1,5 @@
-import ScrollBtn from './ScrollBtn';
-import useListRef from '../hooks/useListRef';
+import ScrollBtn from '../../ScrollBtn';
+import useListRef from '../../../hooks/useListRef';
 import styles from './MediaList.module.css'
 
 type MediaListProp<T> = {

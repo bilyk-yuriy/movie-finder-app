@@ -1,0 +1,115 @@
+.wrapper {
+    min-height: 406px;
+    padding: 60px 0;
+    background-color: hsl(222, 25%, 8%);
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.poster {
+    height: 402px;
+    aspect-ratio: 1 / 1.5;
+    border-radius: 12px;
+}
+
+.detailsContainer {
+    width: 400px;
+}
+
+.title {
+    height: 60px;
+    width: 380px;
+    border-radius: 6px;
+}
+
+.border {
+    margin: 10px 0;
+    height: 2px;
+    width: 400px;
+}
+
+.yearRuntimeGenre {
+    display: flex;
+    margin: 20px 0 10px;
+}
+
+.year {
+    height: 27px;
+    width: 52px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.runtime {
+    height: 27px;
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.genres {
+    height: 27px;
+    width: 190px;
+    border-radius: 4px;
+}
+
+.genresEnd {
+    height: 27px;
+    width: 180px;
+    border-radius: 4px;
+}
+
+.ratingDesc {
+    display: flex;
+    margin: 20px 0 10px;
+}
+
+.rating {
+    height: 27px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.descStart {
+    height: 27px;
+    width: 300px;
+    border-radius: 4px;
+}
+
+.descCenter {
+    height: 27px;
+    width: 380px;
+    border-radius: 4px;
+}
+
+.descLink {
+    display: flex;
+    margin: 10px 0;
+}
+
+.descEnd {
+    height: 27px;
+    width: 260px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.link {
+    height: 27px;
+    width: 70px;
+    border-radius: 4px;
+}
+
+.addBtn {
+    height: 40px;
+    width: 240px;
+    border-radius: 15px;
+    margin-top: 20px;
+}

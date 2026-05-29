@@ -13,7 +13,7 @@
     font-weight: 800;
 }
 
-.flexContainer {
+.container {
     display: flex;
     gap: 70px;
 }
@@ -47,6 +47,7 @@
 }
 
 .startIcon{
+    cursor: pointer;
     height: 50px;
     width: 50px;
     position: absolute;
@@ -102,14 +103,14 @@
     font-weight: 600;
 }
 
-.leftColumn {
-    opacity: 0.8;
-}
-
 .info {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 8px 40px;
+}
+
+.leftColumn {
+    opacity: 0.8;
 }
 
 .tagline {
