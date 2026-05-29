@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import type { MoviePreview } from "../types"
+import type { MoviePreview } from '../../../types'
 import styles from './SectionCard.module.css'
 
 type CardItemProp = {
