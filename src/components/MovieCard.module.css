@@ -30,6 +30,8 @@
     font-family: 'Fira Code', monospace;
     font-weight: 700;
     font-size: 30px;
+    min-width: 36px;
+    text-align: end;
 }
 
 .poster {

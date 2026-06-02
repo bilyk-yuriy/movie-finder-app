@@ -33,8 +33,8 @@ function DropDown<T>({ isSingleSelect, input, search, options, selectOption, res
                 <div className={styles.titleOption}>                    
                     {el.isHistory && <FaHistory style={{fontSize: '10px', opacity: '0.7'}}/>}
                     {search && !el.isHistory && <IoSearch style={{fontSize: '10px'}}/>}
-                    {search && el.poster && <img src={`${BASE_URL_IMAGE}w92${el.poster}`} className={styles.poster}/>}
-                    <span>{el.name}</span>
+                    {search && el.poster && <img src={`${BASE_URL_IMAGE}w92${el.poster}`} className={styles.poster}/>}                    
+                    {<span>{el.name.length >= 17 ? `${(el.name).slice(0, 16)}...` : el.name}</span>}
                 </div>
                 <span>{selected?.find(item => item === el.value) && '✓'}</span>
                 {search && el.isHistory && removeOption && <span onClick={(e)=> {e.stopPropagation(); removeOption(el.value)}} className={styles.deleteBtn}>×</span>}

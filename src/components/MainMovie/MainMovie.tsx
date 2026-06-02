@@ -29,7 +29,7 @@ function MainMovie() {
         : undefined
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['mainMovie', selectedMovieId],
+        queryKey: ['mainMovie'],
         queryFn: () => {
             if (selectedMovieId === undefined) throw new Error('No movie id')
             return fetchMovie(selectedMovieId)
