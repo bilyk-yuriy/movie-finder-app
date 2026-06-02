@@ -99,7 +99,6 @@ return <>
                 <div className={styles.navActions}>
                     <Link className={`${pathname === '/all-movie' ? styles.navLinkActive : styles.navLink}`} to='/all-movie'>Movie</Link>
                     <Link className={`${pathname === '/watch-list' ? styles.navLinkActive : styles.navLink}`} to='/watch-list'>WatchList</Link>
-                    <button className={styles.loginBtn}>Login</button>
                 </div>
             </nav>
         </Container>
